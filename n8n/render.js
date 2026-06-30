@@ -65,7 +65,7 @@ const innerHeader = (tag) => `<div style="display:flex;justify-content:space-bet
 // 3-dot profielbadge met de actieve kleur opgelicht
 function profileBadge(score, size) {
   const k = stKey(score);
-  const dot = (c, on) => `<span style="width:${size}px;height:${size}px;border-radius:50%;background:${c};${on ? `box-shadow:0 0 0 ${size > 30 ? 7 : 4}px ${c}2e;` : 'opacity:.22;'}"></span>`;
+  const dot = (c, on) => `<span style="width:${size}px;height:${size}px;border-radius:50%;background:${c};${on ? `box-shadow:0 0 0 ${size > 30 ? 7 : 4}px ${c}2e;` : ''}"></span>`;
   return `${dot('#4bb3a6', k === 'groen')}${dot('#ec641a', k === 'oranje')}${dot('#6b6f7e', k === 'rood')}`;
 }
 
