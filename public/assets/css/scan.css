@@ -36,6 +36,9 @@
 
   --ease: cubic-bezier(.22, .61, .36, 1);
   --maxw: 1280px;
+  /* leeskolom: de breedte die de merkbalk, vragen, poort en profiel delen,
+     zodat de header altijd even breed is als de content eronder. */
+  --content: 900px;
 }
 
 * { box-sizing: border-box; }
@@ -72,6 +75,7 @@ body {
 .brandbar {
   display: flex; align-items: center; justify-content: space-between;
   padding: 22px 0 10px;
+  max-width: var(--content); margin-inline: auto; width: 100%;
 }
 .brandbar__logo { display: inline-flex; }
 .brandbar__logo img { height: 38px; width: auto; display: block; }
@@ -206,7 +210,7 @@ h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink)
 .gauge__chip--2 { bottom: 10%; right: -4%; animation: float 5.5s ease-in-out infinite .8s; }
 
 /* ===================== 2/8. VRAAG ===================== */
-.qhead { max-width: 880px; margin: 0 auto 18px; }
+.qhead { max-width: var(--content); margin: 0 auto 18px; }
 .qhead__meta { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
 .qhead__count { font-weight: 700; font-size: 14px; color: var(--c-muted); }
 .progress { height: 8px; background: #eceae6; border-radius: 999px; overflow: hidden; }
@@ -215,7 +219,7 @@ h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink)
   background: linear-gradient(90deg, var(--c-accent), var(--c-primary));
   transition: width .5s var(--ease);
 }
-.qcard { max-width: 880px; margin: 0 auto; }
+.qcard { max-width: var(--content); margin: 0 auto; }
 .qcard.pop { animation: pop .4s var(--ease) both; }
 @keyframes pop { from { opacity: .4; transform: translateY(10px) scale(.99); } to { opacity: 1; transform: none; } }
 .qtheme {
@@ -248,13 +252,15 @@ h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink)
 .answer--na .answer__label { color: var(--c-muted); font-style: italic; }
 
 .qprivacy { margin: 18px 0 0; font-size: 13px; color: var(--c-muted); }
-.qnav { display: flex; justify-content: space-between; gap: 14px; max-width: 880px; margin: 22px auto 0; }
+.qnav { display: flex; justify-content: space-between; gap: 14px; max-width: var(--content); margin: 22px auto 0; }
 .qnav--center { justify-content: center; }
 .shake { animation: shake .4s; }
 @keyframes shake { 25% { transform: translateX(-6px); } 50% { transform: translateX(6px); } 75% { transform: translateX(-4px); } }
 
 /* ===================== 3. LEAD-POORT ===================== */
-.gate { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(24px, 4vw, 48px); align-items: center; }
+.gate { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(24px, 4vw, 48px); align-items: center; max-width: var(--content); margin-inline: auto; }
+.gate__intro .pill--accent { display: inline-block; margin-bottom: 18px; }
+.gate__intro .lead { max-width: 32ch; }
 .gate__bullets { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 12px; }
 .gate__bullets li {
   position: relative; padding-left: 32px; font-weight: 600; color: var(--ink-soft);
@@ -279,10 +285,13 @@ h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink)
 .field__err { margin: 0; font-size: 12.5px; color: #c5421f; min-height: 0; }
 .field__err:not(:empty) { min-height: 16px; }
 .field--check { grid-column: 1 / -1; }
-.check { display: flex; align-items: flex-start; gap: 11px; cursor: pointer; font-size: 14px; color: var(--ink-soft); }
+.check { display: grid; grid-template-columns: 22px 1fr; align-items: start; column-gap: 11px; cursor: pointer; font-size: 14px; color: var(--ink-soft); }
 .check input { position: absolute; opacity: 0; width: 0; height: 0; }
+.check__label { line-height: 1.5; }
 .check__box {
-  flex: none; width: 22px; height: 22px; border-radius: 7px; border: 2px solid #cfd3cf; margin-top: 1px;
+  flex: none; width: 22px; height: 22px; border-radius: 7px; border: 2px solid #cfd3cf;
+  /* uitlijnen met het midden van de eerste tekstregel (line-height 1.5 * 14px = 21px) */
+  margin-top: calc((1.5em - 22px) / 2);
   transition: all .15s; background: #fff;
 }
 .check input:checked + .check__box {
@@ -294,16 +303,37 @@ h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink)
 .gate__avg a { color: var(--c-primary-deep); }
 .gate__fineprint { text-align: center; font-size: 12px; color: var(--c-muted); margin: 12px 0 0; }
 
-/* ===================== 4. PROFIEL ===================== */
-.profile { max-width: 720px; margin: 0 auto; text-align: center; }
-.profile__icon {
-  font-size: 64px; width: 116px; height: 116px; margin: 0 auto 20px;
-  display: grid; place-items: center; border-radius: 32px;
-  background: linear-gradient(140deg, rgba(133, 206, 228, .3), rgba(236, 100, 26, .14));
-  box-shadow: var(--shadow); animation: pop .6s var(--ease) both;
+/* ===================== 4. PROFIEL (resultaat-hero) ===================== */
+.result { max-width: 760px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.result__badge {
+  position: relative; width: 132px; height: 132px; border-radius: 38px;
+  display: grid; place-items: center; margin-bottom: 22px;
+  background: linear-gradient(150deg, #fff, var(--c-soft));
+  animation: pop .6s var(--ease) both;
 }
-.profile__kicker { font-weight: 700; color: var(--c-muted); margin: 0 0 4px; }
-.profile .lead { margin: 0 auto 30px; }
+/* gekleurde halo per stoplichtkleur (geen losse emoji in grijs vlak meer) */
+.result__badge::before {
+  content: ""; position: absolute; inset: -4px; border-radius: 42px; z-index: -1; filter: blur(3px);
+}
+.result__badge.is-groen { box-shadow: 0 26px 60px -26px rgba(75, 179, 166, .65); }
+.result__badge.is-oranje { box-shadow: 0 26px 60px -26px rgba(236, 100, 26, .6); }
+.result__badge.is-rood { box-shadow: 0 26px 60px -26px rgba(107, 111, 126, .55); }
+.result__badge.is-groen::before { background: linear-gradient(150deg, #9bd8d0, var(--st-groen)); opacity: .55; }
+.result__badge.is-oranje::before { background: linear-gradient(150deg, #f7a06a, var(--st-oranje)); opacity: .5; }
+.result__badge.is-rood::before { background: linear-gradient(150deg, #aeb2bd, var(--st-rood)); opacity: .45; }
+.result__icon { font-size: 60px; line-height: 1; }
+.result__kicker { font-weight: 700; color: var(--c-muted); margin: 0 0 4px; }
+.result__text { margin: 0 auto 28px; }
+.result__scores { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; max-width: 560px; margin: 0 auto 30px; }
+.scorechip { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 16px 18px; box-shadow: var(--shadow-sm); text-align: left; }
+.scorechip__top { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 14px; margin-bottom: 11px; }
+.scorechip__top b { margin-left: auto; font-family: var(--font-display); font-size: 17px; }
+.dot { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+.dot--groen { background: var(--st-groen); }
+.dot--oranje { background: var(--st-oranje); }
+.dot--rood { background: var(--st-rood); }
+.result__note { margin: 24px auto 0; max-width: 50ch; font-size: 13.5px; color: var(--c-muted); }
+@media (max-width: 560px) { .result__scores { grid-template-columns: 1fr; } }
 
 /* ===================== 5. DATADUIK ===================== */
 .bars { display: grid; gap: 16px; margin: 26px 0; }
@@ -372,10 +402,17 @@ h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink)
 .ctabox--solid p { color: rgba(255, 255, 255, .82); margin-bottom: 18px; }
 
 /* ===================== 9. EINDRAPPORT / ROOS ===================== */
-.report { display: grid; grid-template-columns: 1.25fr .75fr; gap: 24px; align-items: start; margin-top: 24px; }
-.report__radar { display: grid; place-items: center; padding: clamp(16px, 2vw, 24px); }
+/* introzin op volle breedte zodat hij op één regel past (desktop) */
+.report__intro { max-width: none; }
+/* align-items: stretch laat de roos-kaart even hoog worden als de kolom rechts,
+   zodat het donkere blok niet meer uitsteekt. */
+.report { display: grid; grid-template-columns: 1.25fr .75fr; gap: 24px; align-items: stretch; margin-top: 24px; }
+.report__radar { display: grid; place-items: center; padding: clamp(16px, 2vw, 24px); height: 100%; }
 .report__radar canvas { max-width: 100%; height: auto; }
-.report__side { display: grid; gap: 20px; }
+.report__side { display: grid; gap: 20px; align-content: start; }
+.report__mailed { margin: 0 0 18px; font-size: 13px; color: rgba(255, 255, 255, .72); padding-left: 22px; position: relative; }
+.report__mailed::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--c-accent); font-weight: 700; }
+.report__mailed:empty { display: none; }
 .prio__list { list-style: none; counter-reset: p; padding: 0; margin: 14px 0 0; display: grid; gap: 14px; }
 .prio__list li { display: flex; gap: 12px; align-items: flex-start; }
 .prio__bullet { flex: none; width: 14px; height: 14px; border-radius: 50%; margin-top: 4px; }
@@ -406,16 +443,14 @@ h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink)
 /* De vraagkolom blijft bewust leesbaar (max ~1000-1080px), maar de bredere
    schermen (intro, dataduik, tips, roos) en de typografie schalen mee. */
 @media (min-width: 1500px) {
-  :root { --maxw: 1400px; }
-  .qhead, .qcard, .qnav { max-width: 1000px; }
+  :root { --maxw: 1400px; --content: 1000px; }
   .stage { padding: 60px 0 36px; }
   .lead { font-size: 20px; }
   .gauge { width: min(420px, 42vw); }
   .answer { min-height: 78px; }
 }
 @media (min-width: 1900px) {
-  :root { --maxw: 1560px; }
-  .qhead, .qcard, .qnav { max-width: 1080px; }
+  :root { --maxw: 1560px; --content: 1080px; }
   .display { font-size: clamp(56px, 5vw, 86px); }
   .display--sm { font-size: clamp(40px, 3.2vw, 56px); }
   .qtext { font-size: clamp(26px, 2vw, 34px); }

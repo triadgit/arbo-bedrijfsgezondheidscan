@@ -74,7 +74,7 @@
           <div class="gate__intro">
             <span class="pill pill--accent">Bijna klaar</span>
             <h2 class="display display--sm">Uw resultaat staat klaar</h2>
-            <p class="lead">Laat hieronder kort uw gegevens achter. U ziet direct uw bedrijfsprofiel en stoplichtscore, en we sturen het complete rapport naar uw inbox.</p>
+            <p class="lead">Laat hieronder kort uw gegevens achter. U ziet meteen uw bedrijfsprofiel en stoplichtscore, en we sturen uw stoplicht-tussenrapport naar uw inbox.</p>
             <ul class="gate__bullets" id="gateBullets"></ul>
           </div>
           <form class="gate__form card" id="gateForm" novalidate>
@@ -88,12 +88,16 @@
 
       <!-- 4. PROFIEL -->
       <section class="screen" id="screen-profile" data-screen="profile">
-        <div class="profile">
-          <div class="profile__icon" id="profileIcon">🎯</div>
-          <p class="profile__kicker">Waarschijnlijk is uw organisatie de</p>
+        <div class="result">
+          <div class="result__badge is-oranje" id="profileBadge">
+            <span class="result__icon" id="profileIcon">🎯</span>
+          </div>
+          <p class="result__kicker">Waarschijnlijk is uw organisatie de</p>
           <h1 class="display display--sm accenttext" id="profileName"></h1>
-          <p class="lead" id="profileText"></p>
+          <p class="lead result__text" id="profileText"></p>
+          <div class="result__scores" id="profileScores"></div>
           <button class="btn btn--primary btn--lg" id="profileNext">Duik in uw data <span class="btn__arrow">&rarr;</span></button>
+          <p class="result__note" id="profileNote"></p>
         </div>
       </section>
 
@@ -132,8 +136,8 @@
         <div class="tips" id="tipsGrid"></div>
         <div class="ctabox" id="tipsCta">
           <div class="ctabox__text">
-            <h3>Wilt u het volledige beeld?</h3>
-            <p id="tipsCtaText">Maak de diagnose compleet met de verdieping en ontvang de volledige roos met al uw aandachtsgebieden.</p>
+            <h3>Maak de diagnose compleet</h3>
+            <p id="tipsCtaText"></p>
           </div>
           <div class="ctabox__actions">
             <button class="btn btn--primary btn--lg" id="startDeep">Start de verdieping <span class="btn__arrow">&rarr;</span></button>
@@ -145,7 +149,7 @@
       <!-- 9. EINDRAPPORT / ROOS -->
       <section class="screen" id="screen-report" data-screen="report">
         <h2 class="display display--sm">Uw bedrijfsgezondheid in één roos</h2>
-        <p class="lead">De roos toont uw score per rubriek tegenover de norm van 80%. De grootste afstand tot de norm bepaalt uw topprioriteiten.</p>
+        <p class="lead report__intro">Elke rubriek afgezet tegen de norm van 80%; de grootste afstand bepaalt uw prioriteiten.</p>
         <div class="report">
           <div class="report__radar card">
             <canvas id="radar" width="640" height="560" role="img" aria-label="Roosdiagram met scores per rubriek"></canvas>
@@ -158,6 +162,7 @@
             <div class="ctabox ctabox--solid">
               <h3 id="reportRouteTitle"></h3>
               <p id="reportRouteText"></p>
+              <p class="report__mailed" id="reportMailed"></p>
               <a class="btn btn--primary btn--lg btn--block" id="reportAdvies" href="#" target="_blank" rel="noopener">Plan een adviesgesprek <span class="btn__arrow">&rarr;</span></a>
             </div>
           </div>

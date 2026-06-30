@@ -80,7 +80,7 @@ function renderStatic() {
   ].map((t) => `<li>${t}</li>`).join('');
   renderGateFields();
   document.getElementById('gateAvg').innerHTML =
-    `Wij vragen geen medische gegevens en gebruiken uw gegevens alleen om uw rapport te sturen en (na toestemming) contact op te nemen. Zie ons <a href="${app.settings.privacy_url}" target="_blank" rel="noopener">privacybeleid</a>.`;
+    `Geen medische gegevens. Alleen voor uw rapport en (na toestemming) contact. <a href="${app.settings.privacy_url}" target="_blank" rel="noopener">Privacybeleid</a>.`;
 
   // advies-links
   for (const id of ['tipsAdvies', 'reportAdvies']) {
@@ -110,7 +110,14 @@ function renderQuestion() {
   document.getElementById('qPhasePill').textContent = app.mode === 'quick' ? 'Quickscan' : 'Verdieping';
   document.getElementById('qCount').textContent = `Vraag ${app.qi + 1} van ${list.length}`;
   document.getElementById('qProgress').style.width = `${((app.qi + 1) / list.length) * 100}%`;
-  document.getElementById('qTheme').textContent = q.theme;
+  // In de verdieping tonen we sectie-voortgang per rubriek om uitval te beperken.
+  if (app.mode === 'deep') {
+    const themes = [...new Set(app.deep.map((x) => x.theme))];
+    const ti = themes.indexOf(q.theme) + 1;
+    document.getElementById('qTheme').textContent = `Rubriek ${ti} van ${themes.length} · ${q.theme}`;
+  } else {
+    document.getElementById('qTheme').textContent = q.theme;
+  }
   document.getElementById('qText').textContent = q.text;
   renderAnswers(q.id);
   // animatie opnieuw triggeren
@@ -237,12 +244,25 @@ function setErr(key, msg) {
 
 /* ---------- profiel + dataduik ---------- */
 function buildProfile() {
-  const { data, regie } = S.quickscanScores(app.answers, app.questions);
+  const { data, regie, overall } = S.quickscanScores(app.answers, app.questions);
   const route = S.resolveRoute(app.scoring.routes, data, regie);
-  const text = app.content.profiles[route.name] || '';
   document.getElementById('profileIcon').textContent = route.icon || '🎯';
+  document.getElementById('profileBadge').className = 'result__badge is-' + S.stoplichtKey(overall);
   document.getElementById('profileName').textContent = route.name;
-  document.getElementById('profileText').textContent = text;
+  document.getElementById('profileText').textContent = app.content.profiles[route.name] || '';
+  // mini-preview van de twee quickscan-knoppen, met stoplichtkleur
+  document.getElementById('profileScores').innerHTML = [
+    ['Verzuimbeeld en data', data],
+    ['Leidinggevende regie', regie],
+  ].map(([t, s]) => {
+    const k = S.stoplichtKey(s);
+    return `<div class="scorechip">
+      <div class="scorechip__top"><span class="dot dot--${k}"></span><span>${t}</span><b>${s}%</b></div>
+      <div class="bar"><div class="bar__fill bar__fill--${k}" style="width:${s}%"></div></div>
+    </div>`;
+  }).join('');
+  document.getElementById('profileNote').textContent =
+    'Dit is uw tussenstand op de twee belangrijkste knoppen voor grip op verzuim. De verdieping vult straks de overige rubrieken aan tot uw volledige roos.';
 }
 
 function renderData() {
@@ -305,7 +325,7 @@ function renderTips() {
      </article>`).join('');
   const mail = app.contact.email ? ` naar <strong>${escapeHtml(app.contact.email)}</strong>` : '';
   document.getElementById('tipsCtaText').innerHTML =
-    `Uw volledige rapport is onderweg${mail}. Wilt u het hele beeld? Maak de diagnose compleet met de verdieping en ontvang de volledige roos met al uw aandachtsgebieden.`;
+    `Uw stoplicht-tussenrapport is onderweg${mail}. De verdieping vult de overige rubrieken aan tot uw volledige roos met alle aandachtsgebieden, die we daarna ook toesturen.`;
 }
 
 /* ---------- verdieping ---------- */
@@ -408,6 +428,9 @@ function drawRadar() {
   const rep = app.content.report_texts[`overall ${key === 'groen' ? 'groen' : key === 'oranje' ? 'oranje' : 'rood'}`];
   document.getElementById('reportRouteTitle').textContent = route.name;
   document.getElementById('reportRouteText').textContent = rep ? rep.tekst : '';
+  document.getElementById('reportMailed').textContent = app.contact.email
+    ? `Dit volledige rapport sturen we ook naar ${app.contact.email}.`
+    : 'Dit volledige rapport sturen we ook naar uw inbox.';
 }
 
 function reportOverall(rubrics) {

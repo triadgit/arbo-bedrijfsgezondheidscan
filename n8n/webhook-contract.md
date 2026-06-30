@@ -177,8 +177,9 @@ Bevat dezelfde `meta` en `contact` als event 1.
    voorgekauwde teksten uit de payload, en **mailen** naar de lead (`contact.email`) plus de
    adviseur. De payload is rapport-klaar, dus geen extra lookups nodig.
 4. **(Event 2)** **Dezelfde rij verrijken** met het volledige eindrapport (roos, top-3,
-   adviesroute, alle 61 antwoorden). Eventueel een tweede, uitgebreider PDF-rapport renderen
-   en mailen.
+   adviesroute, alle 61 antwoorden) en het **uitgebreide roos-PDF-rapport renderen en mailen**
+   (`pdf-template.html` rendert het `{{#if eindrapport}}`-blok mee). De pagina belooft de
+   bezoeker namelijk dat het volledige rapport na de verdieping ook wordt toegestuurd.
 
 ### Matching-sleutel
 
