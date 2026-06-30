@@ -62,6 +62,16 @@ Notities:
   uit event 1. De pagina stuurt bij event 2 dezelfde `contact.email`; als de oorspronkelijke
   timestamp ontbreekt, match op meest recente open rij van dat e-mailadres.
 
+## Gotenberg: LIVE (gedeployed 2026-06-30)
+
+- Coolify-app `gotenberg-scan`, uuid `y8gfwytdmd8xsniit6amqivm`, project "Triad: n8n" / production,
+  image `gotenberg/gotenberg:8` (draait 8.34.0). **Intern-only** (geen publieke FQDN).
+- Interne URL voor n8n (zelfde coolify-netwerk): **`http://y8gfwytdmd8xsniit6amqivm:3000`**
+- Render-endpoint: `POST /forms/chromium/convert/html` (multipart: `files=@index.html`,
+  `waitDelay=1.5s`, `printBackground=true`).
+- Geverifieerd: render.js-output -> Gotenberg -> tussenrapport 3 pagina's, eindrapport 4 pagina's,
+  fonts (Comfortaa/Lato) ingesloten en logo opgehaald. PDF's kloppen visueel.
+
 ## 4. HTML -> PDF: Gotenberg op Coolify
 
 n8n heeft geen ingebouwde HTML->PDF. **Gotenberg** is een kleine, gratis, self-hosted
