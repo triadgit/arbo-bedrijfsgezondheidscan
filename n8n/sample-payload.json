@@ -1,0 +1,791 @@
+{
+  "quickscan_lead": {
+    "event": "quickscan_lead",
+    "timestamp": "2026-06-30T09:14:27Z",
+    "meta": {
+      "url": "https://scan.arboconcern.nl/",
+      "taal": "nl"
+    },
+    "contact": {
+      "organisatie": "Meander Zorggroep",
+      "sector": "Zorg en welzijn",
+      "aantal_medewerkers": "100-250",
+      "contactpersoon": "Sandra de Vries",
+      "email": "s.devries@meanderzorggroep.nl",
+      "telefoon": "030 555 12 34",
+      "toestemming": true
+    },
+    "quickscan": {
+      "data_score": 62,
+      "regie_score": 58,
+      "overall": 60,
+      "profiel": {
+        "route": "R4",
+        "naam": "Praktische verbeteraar",
+        "tekst": "Er is een werkbare basis, maar nog geen strak systeem. Kies prioriteiten en breng data, regie en proces in een ritme.",
+        "icoon": "🎯"
+      },
+      "stoplicht": {
+        "data": "oranje",
+        "regie": "oranje"
+      },
+      "laagste_rubriek": "Leidinggevende regie",
+      "rapportageteksten": {
+        "overall": {
+          "tekst": "Er is een basis aanwezig, maar de aanpak is nog kwetsbaar of persoonsafhankelijk. Het grootste rendement zit in het verbinden van inzicht, leidinggevende regie en duidelijke procesafspraken.",
+          "cta": "Kies voor verdieping en vertaal de uitkomst naar een 90-dagen verbeterplan."
+        },
+        "data": {
+          "tekst": "Er is data beschikbaar, maar deze leidt nog niet altijd tot gerichte actie. De stap van meten naar sturen verdient aandacht.",
+          "cta": "Koppel trends aan acties per team of risicogroep."
+        },
+        "regie": {
+          "tekst": "Leidinggevenden pakken hun rol deels, maar de aanpak is nog niet overal consequent.",
+          "cta": "Train op gespreksvoering, frequent verzuim en aangepast werk."
+        }
+      },
+      "tips": [
+        {
+          "kop": "Maak het zichtbaar",
+          "tekst": "Maak een dag-1 belscript en gesprekskader voor leidinggevenden."
+        },
+        {
+          "kop": "Verbind inzicht aan actie",
+          "tekst": "Train leidinggevenden op mogelijkheden, privacy en aangepast werk."
+        },
+        {
+          "kop": "Versterk regie",
+          "tekst": "Leg rolverdeling vast tussen leidinggevende, HR en arbodienst."
+        },
+        {
+          "kop": "Borg opvolging",
+          "tekst": "Bespreek frequent verzuim preventief voordat het langdurig wordt."
+        }
+      ],
+      "antwoorden": [
+        {
+          "code": "VB01",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Meetbaarheid",
+          "vraag": "Heeft u op ieder moment zicht op het actuele verzuimpercentage, de meldingsfrequentie en de gemiddelde verzuimduur?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "VB02",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Segmentatie",
+          "vraag": "Worden kort frequent, middellang en langdurig verzuim apart gevolgd en besproken?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "VB03",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Uitsplitsing",
+          "vraag": "Kunt u verzuim uitsplitsen naar team, locatie, functiegroep of leidinggevende zonder handmatig zoekwerk?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "VB04",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Trendanalyse",
+          "vraag": "Worden trends, pieken en terugkerende patronen in verzuim minimaal per kwartaal geanalyseerd?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "VB05",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Oorzaakbeeld",
+          "vraag": "Is bekend welke oorzaken, werkfactoren of privefactoren het vaakst terugkomen in het verzuimbeeld?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "VB06",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Kosteninzicht",
+          "vraag": "Worden verzuimkosten zichtbaar gemaakt voor directie, HR en leidinggevenden?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "VB07",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Normering",
+          "vraag": "Is er een duidelijke norm of ambitie voor gezond verzuim binnen uw organisatie?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "VB08",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Sturing",
+          "vraag": "Leidt verzuimdata aantoonbaar tot concrete acties, prioriteiten of preventieve interventies?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "LR01",
+          "thema": "Leidinggevende regie",
+          "sub": "Dag 1",
+          "vraag": "Weten leidinggevenden exact wat zij moeten doen bij een ziekmelding, vanaf dag een?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "LR02",
+          "thema": "Leidinggevende regie",
+          "sub": "Contact",
+          "vraag": "Voeren leidinggevenden tijdig en consequent contactgesprekken met zieke medewerkers?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "LR03",
+          "thema": "Leidinggevende regie",
+          "sub": "Werkhervatting",
+          "vraag": "Worden mogelijkheden voor aangepast werk actief onderzocht voordat verzuim langdurig wordt?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "LR04",
+          "thema": "Leidinggevende regie",
+          "sub": "Gesprekskader",
+          "vraag": "Beschikken leidinggevenden over een helder gesprekskader voor belastbaarheid, werkafspraken en terugkeer?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "LR05",
+          "thema": "Leidinggevende regie",
+          "sub": "Aanspreken",
+          "vraag": "Worden leidinggevenden aangesproken op hun rol in preventie, verzuimbegeleiding en re-integratie?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "LR06",
+          "thema": "Leidinggevende regie",
+          "sub": "Ondersteuning",
+          "vraag": "Krijgen leidinggevenden tijdig ondersteuning van HR, casemanager, arbodienst of bedrijfsarts?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "LR07",
+          "thema": "Leidinggevende regie",
+          "sub": "Privacy",
+          "vraag": "Is voor leidinggevenden duidelijk wanneer medische informatie niet gevraagd of vastgelegd mag worden?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "LR08",
+          "thema": "Leidinggevende regie",
+          "sub": "Teaminterventie",
+          "vraag": "Worden teams met verhoogd verzuim actief begeleid met een verbeterplan?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        }
+      ]
+    }
+  },
+  "verdieping_compleet": {
+    "event": "verdieping_compleet",
+    "timestamp": "2026-06-30T09:41:08Z",
+    "meta": {
+      "url": "https://scan.arboconcern.nl/",
+      "taal": "nl"
+    },
+    "contact": {
+      "organisatie": "Meander Zorggroep",
+      "sector": "Zorg en welzijn",
+      "aantal_medewerkers": "100-250",
+      "contactpersoon": "Sandra de Vries",
+      "email": "s.devries@meanderzorggroep.nl",
+      "telefoon": "030 555 12 34",
+      "toestemming": true
+    },
+    "eindrapport": {
+      "overall": 60,
+      "stoplicht": "oranje",
+      "rubrieken": [
+        {
+          "thema": "Verzuimbeeld en data",
+          "score": 62,
+          "norm": 80,
+          "aandachtsscore": 18,
+          "stoplicht": "oranje"
+        },
+        {
+          "thema": "Leidinggevende regie",
+          "score": 58,
+          "norm": 80,
+          "aandachtsscore": 22,
+          "stoplicht": "oranje"
+        },
+        {
+          "thema": "Beleid, proces en Poortwachter",
+          "score": 67,
+          "norm": 80,
+          "aandachtsscore": 13,
+          "stoplicht": "oranje"
+        },
+        {
+          "thema": "Preventie en werkbelasting",
+          "score": 50,
+          "norm": 80,
+          "aandachtsscore": 30,
+          "stoplicht": "rood"
+        },
+        {
+          "thema": "Medewerker en cultuur",
+          "score": 70,
+          "norm": 80,
+          "aandachtsscore": 10,
+          "stoplicht": "oranje"
+        },
+        {
+          "thema": "Arbodienst, adviseurs en samenwerking",
+          "score": 75,
+          "norm": 80,
+          "aandachtsscore": 5,
+          "stoplicht": "groen"
+        },
+        {
+          "thema": "Kosten, verzekering en risico",
+          "score": 44,
+          "norm": 80,
+          "aandachtsscore": 36,
+          "stoplicht": "rood"
+        },
+        {
+          "thema": "Vitaliteit en duurzame inzetbaarheid",
+          "score": 56,
+          "norm": 80,
+          "aandachtsscore": 24,
+          "stoplicht": "oranje"
+        },
+        {
+          "thema": "Governance en verbetering",
+          "score": 63,
+          "norm": 80,
+          "aandachtsscore": 17,
+          "stoplicht": "oranje"
+        }
+      ],
+      "top3_prioriteiten": [
+        {
+          "thema": "Kosten, verzekering en risico",
+          "score": 44,
+          "aandachtsscore": 36
+        },
+        {
+          "thema": "Preventie en werkbelasting",
+          "score": 50,
+          "aandachtsscore": 30
+        },
+        {
+          "thema": "Vitaliteit en duurzame inzetbaarheid",
+          "score": 56,
+          "aandachtsscore": 24
+        }
+      ],
+      "adviesroute": "Praktische verbeteraar: vertaal de roos naar een 90-dagen verbeterplan met focus op kosteninzicht, preventie en werkbelasting. Plan een adviesgesprek met Arbo Concern om prioriteiten en effectindicatoren vast te leggen.",
+      "antwoorden": [
+        {
+          "code": "VB01",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Meetbaarheid",
+          "vraag": "Heeft u op ieder moment zicht op het actuele verzuimpercentage, de meldingsfrequentie en de gemiddelde verzuimduur?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "VB02",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Segmentatie",
+          "vraag": "Worden kort frequent, middellang en langdurig verzuim apart gevolgd en besproken?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "VB03",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Uitsplitsing",
+          "vraag": "Kunt u verzuim uitsplitsen naar team, locatie, functiegroep of leidinggevende zonder handmatig zoekwerk?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "VB04",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Trendanalyse",
+          "vraag": "Worden trends, pieken en terugkerende patronen in verzuim minimaal per kwartaal geanalyseerd?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "VB05",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Oorzaakbeeld",
+          "vraag": "Is bekend welke oorzaken, werkfactoren of privefactoren het vaakst terugkomen in het verzuimbeeld?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "VB06",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Kosteninzicht",
+          "vraag": "Worden verzuimkosten zichtbaar gemaakt voor directie, HR en leidinggevenden?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "VB07",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Normering",
+          "vraag": "Is er een duidelijke norm of ambitie voor gezond verzuim binnen uw organisatie?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "VB08",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Sturing",
+          "vraag": "Leidt verzuimdata aantoonbaar tot concrete acties, prioriteiten of preventieve interventies?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "LR01",
+          "thema": "Leidinggevende regie",
+          "sub": "Dag 1",
+          "vraag": "Weten leidinggevenden exact wat zij moeten doen bij een ziekmelding, vanaf dag een?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "LR02",
+          "thema": "Leidinggevende regie",
+          "sub": "Contact",
+          "vraag": "Voeren leidinggevenden tijdig en consequent contactgesprekken met zieke medewerkers?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "LR03",
+          "thema": "Leidinggevende regie",
+          "sub": "Werkhervatting",
+          "vraag": "Worden mogelijkheden voor aangepast werk actief onderzocht voordat verzuim langdurig wordt?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "LR04",
+          "thema": "Leidinggevende regie",
+          "sub": "Gesprekskader",
+          "vraag": "Beschikken leidinggevenden over een helder gesprekskader voor belastbaarheid, werkafspraken en terugkeer?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "LR05",
+          "thema": "Leidinggevende regie",
+          "sub": "Aanspreken",
+          "vraag": "Worden leidinggevenden aangesproken op hun rol in preventie, verzuimbegeleiding en re-integratie?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "LR06",
+          "thema": "Leidinggevende regie",
+          "sub": "Ondersteuning",
+          "vraag": "Krijgen leidinggevenden tijdig ondersteuning van HR, casemanager, arbodienst of bedrijfsarts?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "LR07",
+          "thema": "Leidinggevende regie",
+          "sub": "Privacy",
+          "vraag": "Is voor leidinggevenden duidelijk wanneer medische informatie niet gevraagd of vastgelegd mag worden?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "LR08",
+          "thema": "Leidinggevende regie",
+          "sub": "Teaminterventie",
+          "vraag": "Worden teams met verhoogd verzuim actief begeleid met een verbeterplan?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "VB09",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Datakoppeling",
+          "vraag": "Wordt verzuimdata gecombineerd met medewerkerstevredenheid, werkdruk, verloop of veiligheidsmeldingen?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "VB10",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Beinvloedbaarheid",
+          "vraag": "Is duidelijk welke verzuimgevallen beinvloedbaar zijn via werk, organisatie of leidinggeven?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "VB11",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Vroegsignalering",
+          "vraag": "Worden preventieve signalen vastgelegd voordat iemand uitvalt?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "VB12",
+          "thema": "Verzuimbeeld en data",
+          "sub": "Bespreekcyclus",
+          "vraag": "Heeft de organisatie een vaste bespreekcyclus waarin data, oorzaken en acties worden gekoppeld?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "LR09",
+          "thema": "Leidinggevende regie",
+          "sub": "Training",
+          "vraag": "Hebben leidinggevenden training gehad in verzuimgesprekken, inzetbaarheid en lastige gesprekken?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "LR10",
+          "thema": "Leidinggevende regie",
+          "sub": "Aanwezigheidsregie",
+          "vraag": "Wordt actief gestuurd op aanwezigheid, mogelijkheden en herstel in plaats van alleen op afwezigheid?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "LR11",
+          "thema": "Leidinggevende regie",
+          "sub": "Dossierkwaliteit",
+          "vraag": "Krijgen leidinggevenden duidelijke feedback op dossierkwaliteit en procesdiscipline?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "LR12",
+          "thema": "Leidinggevende regie",
+          "sub": "Rolverdeling",
+          "vraag": "Zijn taken tussen leidinggevende, HR, casemanager en arbodienst expliciet verdeeld?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "LR13",
+          "thema": "Leidinggevende regie",
+          "sub": "Frequent verzuim",
+          "vraag": "Wordt bij herhaald kort verzuim een preventief inzetbaarheidsgesprek gevoerd?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "BP01",
+          "thema": "Beleid, proces en Poortwachter",
+          "sub": "Verzuimbeleid",
+          "vraag": "Is het verzuimbeleid actueel, praktisch en begrijpelijk voor medewerkers en leidinggevenden?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "BP02",
+          "thema": "Beleid, proces en Poortwachter",
+          "sub": "Poortwachter",
+          "vraag": "Zijn alle Wet verbetering poortwachter-momenten vertaald naar concrete processtappen?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "BP03",
+          "thema": "Beleid, proces en Poortwachter",
+          "sub": "Termijnbewaking",
+          "vraag": "Worden eerstejaarsevaluatie, plan van aanpak en bijstellingen tijdig bewaakt?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "BP04",
+          "thema": "Beleid, proces en Poortwachter",
+          "sub": "Escalatie",
+          "vraag": "Is duidelijk wanneer tweede spoor, deskundigenoordeel of arbeidsdeskundig onderzoek nodig is?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "BP05",
+          "thema": "Beleid, proces en Poortwachter",
+          "sub": "Dossiercontrole",
+          "vraag": "Worden dossiers periodiek gecontroleerd op kwaliteit, volledigheid en privacy?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "BP06",
+          "thema": "Beleid, proces en Poortwachter",
+          "sub": "Leren van casussen",
+          "vraag": "Wordt het beleid na casussen of sanctierisico's verbeterd?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "PW01",
+          "thema": "Preventie en werkbelasting",
+          "sub": "PSA",
+          "vraag": "Is er actueel zicht op psychosociale arbeidsbelasting, werkdruk en ongewenst gedrag?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "PW02",
+          "thema": "Preventie en werkbelasting",
+          "sub": "Fysieke belasting",
+          "vraag": "Is er actueel zicht op fysieke belasting, ergonomie en belastende werkomstandigheden?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "PW03",
+          "thema": "Preventie en werkbelasting",
+          "sub": "RI&E koppeling",
+          "vraag": "Wordt de RI&E vertaald naar concrete preventieacties rond verzuimrisico's?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "PW04",
+          "thema": "Preventie en werkbelasting",
+          "sub": "Werkdrukaanpak",
+          "vraag": "Worden teams met hoge werkdruk ondersteund voordat klachten leiden tot uitval?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "PW05",
+          "thema": "Preventie en werkbelasting",
+          "sub": "Preventief aanbod",
+          "vraag": "Is er een laagdrempelig aanbod voor preventief spreekuur, coaching of bedrijfsmaatschappelijk werk?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "PW06",
+          "thema": "Preventie en werkbelasting",
+          "sub": "Effectmeting",
+          "vraag": "Wordt effect gemeten van preventieve maatregelen?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "MC01",
+          "thema": "Medewerker en cultuur",
+          "sub": "Bespreekbaarheid",
+          "vraag": "Durven medewerkers vroegtijdig signalen van overbelasting of verminderde inzetbaarheid te bespreken?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "MC02",
+          "thema": "Medewerker en cultuur",
+          "sub": "Gedeeld eigenaarschap",
+          "vraag": "Wordt gezondheid gezien als gedeelde verantwoordelijkheid van organisatie, leidinggevende en medewerker?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "MC03",
+          "thema": "Medewerker en cultuur",
+          "sub": "Psychologische veiligheid",
+          "vraag": "Is er aandacht voor psychologische veiligheid in teams?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "MC04",
+          "thema": "Medewerker en cultuur",
+          "sub": "Duurzame terugkeer",
+          "vraag": "Wordt terugkeer na verzuim begeleid met duurzame werkafspraken?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "MC05",
+          "thema": "Medewerker en cultuur",
+          "sub": "Participatie",
+          "vraag": "Worden medewerkers actief betrokken bij verbetermaatregelen rond werk en gezondheid?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "AS01",
+          "thema": "Arbodienst, adviseurs en samenwerking",
+          "sub": "Afspraken",
+          "vraag": "Zijn afspraken met arbodienst, bedrijfsarts en casemanager duidelijk vastgelegd in SLA of werkafspraken?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "AS02",
+          "thema": "Arbodienst, adviseurs en samenwerking",
+          "sub": "Beschikbaarheid arts",
+          "vraag": "Is de bedrijfsarts tijdig beschikbaar en wordt de inzet passend gepland?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "AS03",
+          "thema": "Arbodienst, adviseurs en samenwerking",
+          "sub": "Vertaling advies",
+          "vraag": "Worden adviezen van bedrijfsarts of arbeidsdeskundige vertaald naar uitvoerbare werkafspraken?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "AS04",
+          "thema": "Arbodienst, adviseurs en samenwerking",
+          "sub": "Ketenoverleg",
+          "vraag": "Is er structureel overleg tussen werkgever, arbodienst en eventuele verzekeraar over trends en verbeterpunten?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "AS05",
+          "thema": "Arbodienst, adviseurs en samenwerking",
+          "sub": "Evaluatie",
+          "vraag": "Wordt de kwaliteit van arbodienstverlening periodiek geevalueerd?",
+          "antwoord_label": "Ja, volledig",
+          "score": 100
+        },
+        {
+          "code": "KR01",
+          "thema": "Kosten, verzekering en risico",
+          "sub": "Kostenimpact",
+          "vraag": "Is bekend wat een procentpunt verzuim de organisatie ongeveer kost?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "KR02",
+          "thema": "Kosten, verzekering en risico",
+          "sub": "Integrale risicokijk",
+          "vraag": "Worden verzekering, verzuimbegeleiding en preventie als een samenhangend risicodomein bekeken?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "KR03",
+          "thema": "Kosten, verzekering en risico",
+          "sub": "Financiering",
+          "vraag": "Worden subsidies, interventiebudgetten of verzekeraarsdiensten actief benut?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "KR04",
+          "thema": "Kosten, verzekering en risico",
+          "sub": "Risicoprioriteit",
+          "vraag": "Is duidelijk waar het grootste financiele en organisatorische verzuimrisico zit?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "VI01",
+          "thema": "Vitaliteit en duurzame inzetbaarheid",
+          "sub": "DI-plan",
+          "vraag": "Is er een concreet plan voor duurzame inzetbaarheid voor verschillende levensfasen of functiegroepen?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "VI02",
+          "thema": "Vitaliteit en duurzame inzetbaarheid",
+          "sub": "Relevantie aanbod",
+          "vraag": "Sluiten vitaliteitsactiviteiten aan op de echte verzuim- en werkdrukrisico's?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "VI03",
+          "thema": "Vitaliteit en duurzame inzetbaarheid",
+          "sub": "Eigen regie",
+          "vraag": "Worden medewerkers gestimuleerd om eigen regie te nemen op gezondheid en ontwikkeling?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "VI04",
+          "thema": "Vitaliteit en duurzame inzetbaarheid",
+          "sub": "Werkvermogen",
+          "vraag": "Wordt inzetbaarheid gekoppeld aan loopbaan, scholing en werkvermogen?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "GV01",
+          "thema": "Governance en verbetering",
+          "sub": "Eigenaarschap",
+          "vraag": "Is er een eigenaar op directieniveau voor verzuim, preventie en duurzame inzetbaarheid?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "GV02",
+          "thema": "Governance en verbetering",
+          "sub": "Actieopvolging",
+          "vraag": "Worden verbeteracties bewaakt met eigenaar, deadline en effectindicator?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "GV03",
+          "thema": "Governance en verbetering",
+          "sub": "Terugkoppeling",
+          "vraag": "Worden successen en leerpunten zichtbaar teruggekoppeld aan de organisatie?",
+          "antwoord_label": "Deels",
+          "score": 50
+        },
+        {
+          "code": "GV04",
+          "thema": "Governance en verbetering",
+          "sub": "Herhaalmeting",
+          "vraag": "Wordt de scan periodiek herhaald om voortgang te meten?",
+          "antwoord_label": "Nauwelijks",
+          "score": 25
+        },
+        {
+          "code": "GV05",
+          "thema": "Governance en verbetering",
+          "sub": "Maatwerk",
+          "vraag": "Past de aanpak bij omvang, sector, risico's en volwassenheid van de organisatie?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        },
+        {
+          "code": "GV06",
+          "thema": "Governance en verbetering",
+          "sub": "Uitvoerbaarheid",
+          "vraag": "Is er budget en capaciteit beschikbaar om verbeteringen werkelijk uit te voeren?",
+          "antwoord_label": "Grotendeels",
+          "score": 75
+        }
+      ]
+    }
+  }
+}

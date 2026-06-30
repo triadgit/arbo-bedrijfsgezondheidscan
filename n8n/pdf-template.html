@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bedrijfsgezondheidscan — {{contact.organisatie}}</title>
+
+<!--
+  ============================================================================
+  Arbo Concern — Bedrijfsgezondheidscan PDF-template
+  ----------------------------------------------------------------------------
+  Doel: server-side door n8n (Handlebars/Mustache) gevuld en via Gotenberg /
+  Chromium naar A4-PDF gerenderd. Dit bestand hoort NIET bij de statische
+  bundle; externe Google-fonts via <link> zijn hier dus toegestaan.
+
+  PAYLOAD-MAPPING (webhook events quickscan_lead + verdieping_compleet)
+  ----------------------------------------------------------------------------
+  COVER (blok 1)
+    {{contact.organisatie}}        contact.organisatie
+    {{timestamp}}                  timestamp (ISO of geformatteerd door n8n)
+    {{meta.url}}                   meta.url (optioneel, footer)
+
+  PROFIEL (blok 2)
+    {{quickscan.profiel.naam}}     quickscan.profiel.naam
+    {{quickscan.profiel.tekst}}    quickscan.profiel.tekst
+    {{quickscan.profiel.icoon}}    quickscan.profiel.icoon (emoji)
+    {{quickscan.overall}}          quickscan.overall  (0-100)
+    {{quickscan.stoplicht.*}}      gebruikt voor overall-rapportagetekst hieronder
+    {{quickscan.rapportageteksten.overall}}  voorgekauwde overall-tekst
+
+  DUIK IN JE DATA (blok 3) — twee balken
+    {{quickscan.data_score}}       quickscan.data_score (0-100)
+    {{quickscan.regie_score}}      quickscan.regie_score (0-100)
+    {{quickscan.stoplicht.data}}   "groen" | "oranje" | "rood"  -> class st-*
+    {{quickscan.stoplicht.regie}}  "groen" | "oranje" | "rood"  -> class st-*
+    {{quickscan.laagste_rubriek}}  naam van de laagst scorende rubriek
+
+  THEMADETAIL 1 (blok 4, data) + THEMADETAIL 2 (blok 5, regie)
+    {{quickscan.themadetail.data.titel}}    bv. "Verzuimbeeld en data"
+    {{quickscan.themadetail.data.tekst}}    uitlegtekst (content.theme_detail[...])
+    {{quickscan.data_score}} / stoplicht.data  -> scorebalk
+    idem voor .regie / regie_score / stoplicht.regie
+    (n8n kan deze velden vullen uit content.json theme_detail + rapportageteksten)
+
+  TIPS (blok 6)
+    {{#each quickscan.tips}}        array; per tip: {kop, tekst}
+      {{kop}} {{tekst}}            (volgnummer = @index + 1)
+
+  CTA (blok 7)
+    {{advies_url}}                 advies-/afspraak-URL
+    {{quickscan.rapportageteksten.overall_cta}}  optionele cta-regel (fallback aanwezig)
+
+  EINDRAPPORT / VERDIEPING (blok 8) — alleen bij verdieping_compleet
+    {{#if eindrapport}} ... {{/if}}
+    {{eindrapport.overall}}        eindrapport.overall (0-100)
+    {{eindrapport.adviesroute}}    advies-/routetekst
+    {{#each eindrapport.rubrieken}}  per rubriek: {thema, score, norm, aandachtsscore, stoplicht}
+      {{thema}} {{score}} {{norm}} {{stoplicht}}  -> tabelrij + stoplicht-bolletje
+    {{#each eindrapport.top3_prioriteiten}}  per prioriteit: {thema, score, aandachtsscore}
+      {{thema}} {{score}} {{aandachtsscore}}
+
+  STOPLICHT-KLASSEN
+    stoplicht-waarde "groen"  -> .st-groen  (#79c6c0)
+    stoplicht-waarde "oranje" -> .st-oranje (#ec641a)
+    stoplicht-waarde "rood"   -> .st-rood   (#4c505a)
+
+  BALKBREEDTE
+    De score-balken gebruiken inline style="width:{{score}}%". n8n vult het
+    getal; de % staat in de template.
+  ============================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --orange: #ec641a;
+    --teal:   #79c6c0;
+    --cyan:   #85cee4;
+    --ink:    #4c505a;
+    --muted:  #686c7c;
+    --soft:   #f7f7f7;
+
+    --st-groen:  #79c6c0;
+    --st-oranje: #ec641a;
+    --st-rood:   #4c505a;
+
+    --radius: 14px;
+    --shadow: 0 6px 22px rgba(76, 80, 90, 0.10);
+    --shadow-soft: 0 2px 10px rgba(76, 80, 90, 0.07);
+
+    --font-display: 'Comfortaa', 'Trebuchet MS', system-ui, sans-serif;
+    --font-body: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* ---- Print / page setup ---- */
+  @page {
+    size: A4;
+    margin: 18mm 16mm;
+  }
+  @media print {
+    .page { page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 11pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h1, h2, h3, .display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin: 0 0 0.4em;
+  }
+
+  p { margin: 0 0 0.7em; }
+  strong { font-weight: 900; }
+
+  /* A logical "page" wrapper so we can control breaks. */
+  .page {
+    position: relative;
+    padding-bottom: 6mm;
+  }
+  .page-break-before { page-break-before: always; }
+
+  /* ---- Brand bar ---- */
+  .brandbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--soft);
+    margin-bottom: 22px;
+  }
+  .brandbar .logo { height: 30px; width: auto; }
+  .brandbar .kicker {
+    font-family: var(--font-display);
+    font-size: 9pt;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  /* ---- Cards ---- */
+  .card {
+    background: #fff;
+    border: 1px solid #eef0f2;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .card.soft { background: var(--soft); border-color: #ededf0; }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 8.5pt;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+
+  /* =========================================================
+     1. COVER
+     ========================================================= */
+  .cover {
+    page-break-after: always;
+    min-height: 252mm; /* fill the page within margins */
+    display: flex;
+    flex-direction: column;
+  }
+  .cover-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cover-logo { height: 40px; width: auto; }
+  .cover-tag {
+    font-family: var(--font-display);
+    font-size: 9pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+  }
+  .cover-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cover-eyebrow {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11pt;
+    margin-bottom: 18px;
+  }
+  .cover-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 40pt;
+    line-height: 1.06;
+    color: var(--ink);
+    margin: 0 0 26px;
+    max-width: 15ch;
+  }
+  .cover-org {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--teal), var(--cyan));
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15pt;
+    box-shadow: var(--shadow);
+    align-self: flex-start;
+  }
+  .cover-org .label {
+    font-family: var(--font-body);
+    font-size: 9.5pt;
+    font-weight: 700;
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .cover-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 2px solid var(--soft);
+    padding-top: 14px;
+    color: var(--muted);
+    font-size: 9.5pt;
+  }
+  .cover-foot .when { font-family: var(--font-display); font-weight: 500; color: var(--ink); }
+  .cover-accent {
+    height: 8px;
+    width: 120px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--orange), var(--teal), var(--cyan));
+    margin: 22px 0 0;
+  }
+
+  /* =========================================================
+     2. PROFIEL
+     ========================================================= */
+  .profile {
+    display: flex;
+    gap: 22px;
+    align-items: stretch;
+  }
+  .profile-icon {
+    flex: 0 0 96px;
+    height: 96px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #fff3ec, #fde4d6);
+    border: 1px solid #f6dcca;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44pt;
+    line-height: 1;
+  }
+  .profile-body { flex: 1; }
+  .profile-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19pt;
+    color: var(--ink);
+    margin: 2px 0 6px;
+  }
+  .profile-score-pill {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 9.5pt;
+    color: #fff;
+    background: var(--ink);
+    padding: 3px 12px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+
+  /* =========================================================
+     SCORE BARS (used in blocks 3, 4, 5)
+     ========================================================= */
+  .bar-row { margin-bottom: 16px; }
+  .bar-row:last-child { margin-bottom: 0; }
+  .bar-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .bar-label {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 11pt;
+    color: var(--ink);
+  }
+  .bar-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13pt;
+  }
+  .bar-track {
+    position: relative;
+    height: 16px;
+    background: #edeef0;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    min-width: 4px;
+  }
+  /* norm marker at 80% for the deepdive bars */
+  .bar-track.with-norm::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    left: 80%;
+    width: 2px;
+    background: var(--muted);
+    opacity: 0.55;
+  }
+  .norm-note { font-size: 8.5pt; color: var(--muted); margin-top: 4px; }
+
+  /* stoplicht fill colours */
+  .st-groen  .bar-fill, .bar-fill.st-groen  { background: var(--st-groen); }
+  .st-oranje .bar-fill, .bar-fill.st-oranje { background: var(--st-oranje); }
+  .st-rood   .bar-fill, .bar-fill.st-rood   { background: var(--st-rood); }
+  .bar-value.st-groen  { color: var(--st-groen); }
+  .bar-value.st-oranje { color: var(--st-oranje); }
+  .bar-value.st-rood   { color: var(--st-rood); }
+
+  /* stoplicht dot (table) */
+  .dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+  .dot.st-groen  { background: var(--st-groen); }
+  .dot.st-oranje { background: var(--st-oranje); }
+  .dot.st-rood   { background: var(--st-rood); }
+
+  .attention {
+    background: #fff7f2;
+    border: 1px solid #f7ddcb;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-top: 16px;
+    font-size: 10pt;
+  }
+  .attention strong { color: var(--orange); }
+
+  /* =========================================================
+     6. TIPS
+     ========================================================= */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .tip {
+    display: flex;
+    gap: 14px;
+    background: #fff;
+    border: 1px solid #eef0f2;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    padding: 16px 18px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .tip-num {
+    flex: 0 0 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange), #f3823f);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tip-kop {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 11pt;
+    color: var(--ink);
+    margin: 2px 0 3px;
+  }
+  .tip-tekst { font-size: 9.5pt; color: var(--muted); margin: 0; }
+
+  /* =========================================================
+     7. CTA
+     ========================================================= */
+  .cta {
+    background: linear-gradient(135deg, var(--ink), #3a3e47);
+    color: #fff;
+    border-radius: 18px;
+    padding: 30px 32px;
+    box-shadow: var(--shadow);
+    break-inside: avoid;
+    page-break-inside: avoid;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::after {
+    content: "";
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(121,198,192,0.35), transparent 70%);
+  }
+  .cta h2 { color: #fff; font-size: 22pt; margin-bottom: 8px; }
+  .cta p { color: rgba(255,255,255,0.82); max-width: 52ch; }
+  .cta-btn {
+    display: inline-block;
+    margin-top: 14px;
+    background: var(--orange);
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 12pt;
+    padding: 12px 26px;
+    border-radius: 999px;
+  }
+  .cta-url {
+    display: block;
+    margin-top: 12px;
+    font-size: 9pt;
+    color: rgba(255,255,255,0.6);
+    word-break: break-all;
+  }
+
+  /* =========================================================
+     8. EINDRAPPORT (verdieping)
+     ========================================================= */
+  .roos-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+  }
+  .roos-table thead th {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--soft);
+  }
+  .roos-table thead th.num { text-align: right; }
+  .roos-table tbody td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #f0f1f3;
+    vertical-align: middle;
+  }
+  .roos-table tbody td.num {
+    text-align: right;
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+  .roos-table tbody td.theme { font-weight: 700; color: var(--ink); }
+  .roos-table tbody td.light { text-align: center; }
+  .roos-table tbody tr:last-child td { border-bottom: none; }
+
+  .prio-list { list-style: none; margin: 0; padding: 0; counter-reset: prio; }
+  .prio {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    background: var(--soft);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    break-inside: avoid;
+  }
+  .prio:last-child { margin-bottom: 0; }
+  .prio-rank {
+    flex: 0 0 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .prio-thema { font-family: var(--font-display); font-weight: 600; color: var(--ink); }
+  .prio-meta { font-size: 9pt; color: var(--muted); }
+
+  .legend {
+    display: flex;
+    gap: 18px;
+    font-size: 8.5pt;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+  .footnote {
+    text-align: center;
+    font-size: 8pt;
+    color: var(--muted);
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!-- 1. COVER                                                       -->
+<!-- ============================================================= -->
+<section class="page cover">
+  <div class="cover-top">
+    <!-- n8n: inline arboconcern-logo.svg here, or keep the <img> with the embedded path -->
+    <img class="cover-logo" src="assets/img/arboconcern-logo.svg" alt="Arbo Concern">
+    <span class="cover-tag">Bedrijfsgezondheidscan</span>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-eyebrow">Stoplichtrapportage</div>
+    <h1 class="cover-title">Hoe gezond is uw bedrijf?</h1>
+    <div class="cover-org">
+      <span class="label">Voor</span>
+      {{contact.organisatie}}
+    </div>
+    <div class="cover-accent"></div>
+  </div>
+
+  <div class="cover-foot">
+    <div>
+      <div class="when">{{timestamp}}</div>
+      <div>Quickscan verzuimbeeld &amp; leidinggevende regie</div>
+    </div>
+    <div>Arbo Concern</div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- Inner pages                                                    -->
+<!-- ============================================================= -->
+<section class="page page-break-before">
+  <div class="brandbar">
+    <img class="logo" src="assets/img/arboconcern-logo.svg" alt="Arbo Concern">
+    <span class="kicker">Bedrijfsgezondheidscan · {{contact.organisatie}}</span>
+  </div>
+
+  <!-- =========================================================== -->
+  <!-- 2. PROFIEL                                                   -->
+  <!-- =========================================================== -->
+  <div class="card">
+    <div class="eyebrow">Uw profiel</div>
+    <div class="profile">
+      <div class="profile-icon">{{quickscan.profiel.icoon}}</div>
+      <div class="profile-body">
+        <div class="profile-score-pill">Totaalscore {{quickscan.overall}}%</div>
+        <div class="profile-name">{{quickscan.profiel.naam}}</div>
+        <p>{{quickscan.profiel.tekst}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================== -->
+  <!-- 3. DUIK IN JE DATA — twee balken                             -->
+  <!-- =========================================================== -->
+  <div class="card">
+    <div class="eyebrow">Duik in je bedrijfsgezondheid</div>
+    <h2>Twee assen, één beeld</h2>
+
+    <div class="bar-row">
+      <div class="bar-head">
+        <span class="bar-label">Verzuimbeeld en data</span>
+        <span class="bar-value st-{{quickscan.stoplicht.data}}">{{quickscan.data_score}}%</span>
+      </div>
+      <div class="bar-track with-norm">
+        <div class="bar-fill st-{{quickscan.stoplicht.data}}" style="width:{{quickscan.data_score}}%"></div>
+      </div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-head">
+        <span class="bar-label">Leidinggevende regie</span>
+        <span class="bar-value st-{{quickscan.stoplicht.regie}}">{{quickscan.regie_score}}%</span>
+      </div>
+      <div class="bar-track with-norm">
+        <div class="bar-fill st-{{quickscan.stoplicht.regie}}" style="width:{{quickscan.regie_score}}%"></div>
+      </div>
+      <div class="norm-note">Stippellijn = normscore 80%</div>
+    </div>
+
+    <div class="attention">
+      Meeste aandacht nodig bij: <strong>{{quickscan.laagste_rubriek}}</strong>.
+    </div>
+  </div>
+
+  <!-- =========================================================== -->
+  <!-- 4. THEMADETAIL 1 — Verzuimbeeld en data                      -->
+  <!-- =========================================================== -->
+  <div class="card soft">
+    <div class="eyebrow">Themadetail 1</div>
+    <h3>{{quickscan.themadetail.data.titel}} · {{quickscan.data_score}}%</h3>
+    <p>{{quickscan.themadetail.data.tekst}}</p>
+    <div class="bar-row">
+      <div class="bar-track">
+        <div class="bar-fill st-{{quickscan.stoplicht.data}}" style="width:{{quickscan.data_score}}%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================== -->
+  <!-- 5. THEMADETAIL 2 — Leidinggevende regie                      -->
+  <!-- =========================================================== -->
+  <div class="card soft">
+    <div class="eyebrow">Themadetail 2</div>
+    <h3>{{quickscan.themadetail.regie.titel}} · {{quickscan.regie_score}}%</h3>
+    <p>{{quickscan.themadetail.regie.tekst}}</p>
+    <div class="bar-row">
+      <div class="bar-track">
+        <div class="bar-fill st-{{quickscan.stoplicht.regie}}" style="width:{{quickscan.regie_score}}%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- 6. TIPS  +  7. CTA                                             -->
+<!-- ============================================================= -->
+<section class="page page-break-before">
+  <div class="brandbar">
+    <img class="logo" src="assets/img/arboconcern-logo.svg" alt="Arbo Concern">
+    <span class="kicker">Aan de slag · {{contact.organisatie}}</span>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">Tijd om aan de slag te gaan</div>
+    <h2>Praktische vervolgstappen</h2>
+    <div class="tips-grid">
+      {{#each quickscan.tips}}
+      <div class="tip">
+        <div class="tip-num">{{add @index 1}}</div>
+        <div>
+          <div class="tip-kop">{{kop}}</div>
+          <p class="tip-tekst">{{tekst}}</p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="cta">
+    <div class="eyebrow" style="color: var(--teal);">Volgende stap</div>
+    <h2>Plan een adviesgesprek</h2>
+    <p>{{quickscan.rapportageteksten.overall}}</p>
+    <a class="cta-btn" href="{{advies_url}}">Plan een adviesgesprek</a>
+    <span class="cta-url">{{advies_url}}</span>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- 8. EINDRAPPORT (verdieping) — alleen bij verdieping_compleet   -->
+<!-- ============================================================= -->
+{{#if eindrapport}}
+<section class="page page-break-before">
+  <div class="brandbar">
+    <img class="logo" src="assets/img/arboconcern-logo.svg" alt="Arbo Concern">
+    <span class="kicker">Eindrapport · de roos · {{contact.organisatie}}</span>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">Verdieping compleet</div>
+    <h2>Uw bedrijfsgezondheid in één roos</h2>
+    <div class="profile-score-pill">Totaalscore {{eindrapport.overall}}%</div>
+    <p>{{eindrapport.adviesroute}}</p>
+
+    <table class="roos-table">
+      <thead>
+        <tr>
+          <th>Thema</th>
+          <th class="num">Score</th>
+          <th class="num">Norm</th>
+          <th style="text-align:center;">Stoplicht</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each eindrapport.rubrieken}}
+        <tr>
+          <td class="theme">{{thema}}</td>
+          <td class="num">{{score}}%</td>
+          <td class="num">{{norm}}%</td>
+          <td class="light"><span class="dot st-{{stoplicht}}"></span></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <div class="legend">
+      <span><span class="dot st-groen"></span> Groen ≥75</span>
+      <span><span class="dot st-oranje"></span> Oranje 55–74</span>
+      <span><span class="dot st-rood"></span> Rood &lt;55</span>
+    </div>
+  </div>
+
+  <div class="card soft">
+    <div class="eyebrow">Top-3 prioriteiten</div>
+    <h3>Hier zit de grootste winst</h3>
+    <ol class="prio-list">
+      {{#each eindrapport.top3_prioriteiten}}
+      <li class="prio">
+        <div class="prio-rank">{{add @index 1}}</div>
+        <div>
+          <div class="prio-thema">{{thema}}</div>
+          <div class="prio-meta">Score {{score}}% · aandachtsscore {{aandachtsscore}}</div>
+        </div>
+      </li>
+      {{/each}}
+    </ol>
+  </div>
+
+  <div class="footnote">
+    Arbo Concern · Bedrijfsgezondheidscan · gegenereerd op {{timestamp}}
+  </div>
+</section>
+{{/if}}
+
+</body>
+</html>

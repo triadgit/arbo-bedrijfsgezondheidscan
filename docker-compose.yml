@@ -1,0 +1,16 @@
+# Lokale / self-hosted run van de statische scan-site.
+#
+# Coolify-tip: Coolify kan rechtstreeks vanuit de Dockerfile bouwen (geen compose nodig).
+# Het domein wordt in Coolify ingesteld: eerst een Triad-subdomein, later via een
+# CNAME scan.arboconcern.nl. Deze compose is vooral handig voor lokaal testen.
+
+services:
+  scan:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: arbo-scan
+    ports:
+      # Voorbeeld: host 8080 -> container 80. Pas de host-poort naar wens aan.
+      - "8080:80"
+    restart: unless-stopped

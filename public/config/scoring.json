@@ -1,0 +1,135 @@
+{
+  "answers": [
+    {
+      "label": "Ja, volledig",
+      "score": 100
+    },
+    {
+      "label": "Grotendeels",
+      "score": 75
+    },
+    {
+      "label": "Deels",
+      "score": 50
+    },
+    {
+      "label": "Nauwelijks",
+      "score": 25
+    },
+    {
+      "label": "Nee",
+      "score": 0
+    },
+    {
+      "label": "Niet van toepassing",
+      "score": null
+    }
+  ],
+  "stoplicht": {
+    "groen": 75,
+    "oranje": 55,
+    "_rule": "score>=75 Groen; >=55 Oranje; else Rood"
+  },
+  "norm": 80,
+  "quickscan_themes": [
+    "Verzuimbeeld en data",
+    "Leidinggevende regie"
+  ],
+  "rubrics": [
+    {
+      "theme": "Verzuimbeeld en data",
+      "code_prefixes": [
+        "VB"
+      ],
+      "norm": 80
+    },
+    {
+      "theme": "Leidinggevende regie",
+      "code_prefixes": [
+        "LR"
+      ],
+      "norm": 80
+    },
+    {
+      "theme": "Beleid, proces en Poortwachter",
+      "code_prefixes": [
+        "BP"
+      ],
+      "norm": 80
+    },
+    {
+      "theme": "Preventie en werkbelasting",
+      "code_prefixes": [
+        "PW"
+      ],
+      "norm": 80
+    },
+    {
+      "theme": "Medewerker en cultuur",
+      "code_prefixes": [
+        "MC"
+      ],
+      "norm": 80
+    },
+    {
+      "theme": "Arbodienst, adviseurs en samenwerking",
+      "code_prefixes": [
+        "AS"
+      ],
+      "norm": 80
+    },
+    {
+      "theme": "Kosten, verzekering en risico",
+      "code_prefixes": [
+        "KR"
+      ],
+      "norm": 80
+    },
+    {
+      "theme": "Vitaliteit en duurzame inzetbaarheid",
+      "code_prefixes": [
+        "VI"
+      ],
+      "norm": 80
+    },
+    {
+      "theme": "Governance en verbetering",
+      "code_prefixes": [
+        "GV"
+      ],
+      "norm": 80
+    }
+  ],
+  "routes": [
+    {
+      "id": "R1",
+      "name": "Alarmfase verzuimregie",
+      "condition": "overall < 55",
+      "icon": "🚦"
+    },
+    {
+      "id": "R2",
+      "name": "Datagedreven maar regie-arm",
+      "condition": "data >= 75 && regie < 55",
+      "icon": "📊"
+    },
+    {
+      "id": "R3",
+      "name": "Praktische regelaar",
+      "condition": "data < 55 && regie >= 75",
+      "icon": "🛠️"
+    },
+    {
+      "id": "R5",
+      "name": "Gezondheidsregisseur",
+      "condition": "data >= 75 && regie >= 75",
+      "icon": "📈"
+    },
+    {
+      "id": "R4",
+      "name": "Praktische verbeteraar",
+      "condition": "else",
+      "icon": "🎯"
+    }
+  ]
+}

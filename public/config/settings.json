@@ -1,0 +1,70 @@
+{
+  "webhook_url": "",
+  "webhook_enabled": false,
+  "privacy_url": "https://www.arboconcern.nl/privacy",
+  "advies_url": "https://www.arboconcern.nl/contact",
+  "lead_fields": [
+    {
+      "key": "organisatie",
+      "label": "Organisatienaam",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "email",
+      "label": "E-mailadres",
+      "type": "email",
+      "required": true
+    },
+    {
+      "key": "sector",
+      "label": "Sector",
+      "type": "text",
+      "required": false
+    },
+    {
+      "key": "aantal_medewerkers",
+      "label": "Aantal medewerkers",
+      "type": "select",
+      "required": false,
+      "options": [
+        "1-10",
+        "11-50",
+        "50-100",
+        "100-250",
+        "250-500",
+        "500+"
+      ]
+    },
+    {
+      "key": "contactpersoon",
+      "label": "Contactpersoon",
+      "type": "text",
+      "required": false
+    },
+    {
+      "key": "telefoon",
+      "label": "Telefoonnummer",
+      "type": "tel",
+      "required": false
+    },
+    {
+      "key": "toestemming",
+      "label": "Ik geef toestemming dat Arbo Concern contact met mij opneemt over de uitkomst.",
+      "type": "checkbox",
+      "required": true
+    }
+  ],
+  "branding": {
+    "primary": "#ec641a",
+    "accent": "#79c6c0",
+    "accent2": "#85cee4",
+    "ink": "#4c505a",
+    "muted": "#686c7c",
+    "soft": "#f7f7f7",
+    "logo": "assets/img/arboconcern-logo.svg",
+    "logo_white": "assets/img/arboconcern-logo-white.svg",
+    "font_display": "Comfortaa",
+    "font_body": "Lato"
+  }
+}

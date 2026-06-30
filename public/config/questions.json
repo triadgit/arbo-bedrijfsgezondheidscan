@@ -1,0 +1,503 @@
+{
+  "questions": [
+    {
+      "id": "Q01",
+      "phase": "Quickscan",
+      "theme": "Verzuimbeeld en data",
+      "code": "VB01",
+      "text": "Heeft u op ieder moment zicht op het actuele verzuimpercentage, de meldingsfrequentie en de gemiddelde verzuimduur?",
+      "sub": "Meetbaarheid"
+    },
+    {
+      "id": "Q02",
+      "phase": "Quickscan",
+      "theme": "Verzuimbeeld en data",
+      "code": "VB02",
+      "text": "Worden kort frequent, middellang en langdurig verzuim apart gevolgd en besproken?",
+      "sub": "Segmentatie"
+    },
+    {
+      "id": "Q03",
+      "phase": "Quickscan",
+      "theme": "Verzuimbeeld en data",
+      "code": "VB03",
+      "text": "Kunt u verzuim uitsplitsen naar team, locatie, functiegroep of leidinggevende zonder handmatig zoekwerk?",
+      "sub": "Uitsplitsing"
+    },
+    {
+      "id": "Q04",
+      "phase": "Quickscan",
+      "theme": "Verzuimbeeld en data",
+      "code": "VB04",
+      "text": "Worden trends, pieken en terugkerende patronen in verzuim minimaal per kwartaal geanalyseerd?",
+      "sub": "Trendanalyse"
+    },
+    {
+      "id": "Q05",
+      "phase": "Quickscan",
+      "theme": "Verzuimbeeld en data",
+      "code": "VB05",
+      "text": "Is bekend welke oorzaken, werkfactoren of privéfactoren het vaakst terugkomen in het verzuimbeeld?",
+      "sub": "Oorzaakbeeld"
+    },
+    {
+      "id": "Q06",
+      "phase": "Quickscan",
+      "theme": "Verzuimbeeld en data",
+      "code": "VB06",
+      "text": "Worden verzuimkosten zichtbaar gemaakt voor directie, HR en leidinggevenden?",
+      "sub": "Kosteninzicht"
+    },
+    {
+      "id": "Q07",
+      "phase": "Quickscan",
+      "theme": "Verzuimbeeld en data",
+      "code": "VB07",
+      "text": "Is er een duidelijke norm of ambitie voor gezond verzuim binnen uw organisatie?",
+      "sub": "Normering"
+    },
+    {
+      "id": "Q08",
+      "phase": "Quickscan",
+      "theme": "Verzuimbeeld en data",
+      "code": "VB08",
+      "text": "Leidt verzuimdata aantoonbaar tot concrete acties, prioriteiten of preventieve interventies?",
+      "sub": "Sturing"
+    },
+    {
+      "id": "Q09",
+      "phase": "Quickscan",
+      "theme": "Leidinggevende regie",
+      "code": "LR01",
+      "text": "Weten leidinggevenden exact wat zij moeten doen bij een ziekmelding, vanaf dag één?",
+      "sub": "Dag 1"
+    },
+    {
+      "id": "Q10",
+      "phase": "Quickscan",
+      "theme": "Leidinggevende regie",
+      "code": "LR02",
+      "text": "Voeren leidinggevenden tijdig en consequent contactgesprekken met zieke medewerkers?",
+      "sub": "Contact"
+    },
+    {
+      "id": "Q11",
+      "phase": "Quickscan",
+      "theme": "Leidinggevende regie",
+      "code": "LR03",
+      "text": "Worden mogelijkheden voor aangepast werk actief onderzocht voordat verzuim langdurig wordt?",
+      "sub": "Werkhervatting"
+    },
+    {
+      "id": "Q12",
+      "phase": "Quickscan",
+      "theme": "Leidinggevende regie",
+      "code": "LR04",
+      "text": "Beschikken leidinggevenden over een helder gesprekskader voor belastbaarheid, werkafspraken en terugkeer?",
+      "sub": "Gesprekskader"
+    },
+    {
+      "id": "Q13",
+      "phase": "Quickscan",
+      "theme": "Leidinggevende regie",
+      "code": "LR05",
+      "text": "Worden leidinggevenden aangesproken op hun rol in preventie, verzuimbegeleiding en re-integratie?",
+      "sub": "Aanspreken"
+    },
+    {
+      "id": "Q14",
+      "phase": "Quickscan",
+      "theme": "Leidinggevende regie",
+      "code": "LR06",
+      "text": "Krijgen leidinggevenden tijdig ondersteuning van HR, casemanager, arbodienst of bedrijfsarts?",
+      "sub": "Ondersteuning"
+    },
+    {
+      "id": "Q15",
+      "phase": "Quickscan",
+      "theme": "Leidinggevende regie",
+      "code": "LR07",
+      "text": "Is voor leidinggevenden duidelijk wanneer medische informatie niet gevraagd of vastgelegd mag worden?",
+      "sub": "Privacy"
+    },
+    {
+      "id": "Q16",
+      "phase": "Quickscan",
+      "theme": "Leidinggevende regie",
+      "code": "LR08",
+      "text": "Worden teams met verhoogd verzuim actief begeleid met een verbeterplan?",
+      "sub": "Teaminterventie"
+    },
+    {
+      "id": "D01",
+      "phase": "Verdieping",
+      "theme": "Verzuimbeeld en data",
+      "code": "VB09",
+      "text": "Wordt verzuimdata gecombineerd met medewerkerstevredenheid, werkdruk, verloop of veiligheidsmeldingen?",
+      "sub": "Datakoppeling"
+    },
+    {
+      "id": "D02",
+      "phase": "Verdieping",
+      "theme": "Verzuimbeeld en data",
+      "code": "VB10",
+      "text": "Is duidelijk welke verzuimgevallen beïnvloedbaar zijn via werk, organisatie of leidinggeven?",
+      "sub": "Beïnvloedbaarheid"
+    },
+    {
+      "id": "D03",
+      "phase": "Verdieping",
+      "theme": "Verzuimbeeld en data",
+      "code": "VB11",
+      "text": "Worden preventieve signalen vastgelegd voordat iemand uitvalt?",
+      "sub": "Vroegsignalering"
+    },
+    {
+      "id": "D04",
+      "phase": "Verdieping",
+      "theme": "Verzuimbeeld en data",
+      "code": "VB12",
+      "text": "Heeft de organisatie een vaste bespreekcyclus waarin data, oorzaken en acties worden gekoppeld?",
+      "sub": "Bespreekcyclus"
+    },
+    {
+      "id": "D05",
+      "phase": "Verdieping",
+      "theme": "Leidinggevende regie",
+      "code": "LR09",
+      "text": "Hebben leidinggevenden training gehad in verzuimgesprekken, inzetbaarheid en lastige gesprekken?",
+      "sub": "Training"
+    },
+    {
+      "id": "D06",
+      "phase": "Verdieping",
+      "theme": "Leidinggevende regie",
+      "code": "LR10",
+      "text": "Wordt actief gestuurd op aanwezigheid, mogelijkheden en herstel in plaats van alleen op afwezigheid?",
+      "sub": "Aanwezigheidsregie"
+    },
+    {
+      "id": "D07",
+      "phase": "Verdieping",
+      "theme": "Leidinggevende regie",
+      "code": "LR11",
+      "text": "Krijgen leidinggevenden duidelijke feedback op dossierkwaliteit en procesdiscipline?",
+      "sub": "Dossierkwaliteit"
+    },
+    {
+      "id": "D08",
+      "phase": "Verdieping",
+      "theme": "Leidinggevende regie",
+      "code": "LR12",
+      "text": "Zijn taken tussen leidinggevende, HR, casemanager en arbodienst expliciet verdeeld?",
+      "sub": "Rolverdeling"
+    },
+    {
+      "id": "D09",
+      "phase": "Verdieping",
+      "theme": "Leidinggevende regie",
+      "code": "LR13",
+      "text": "Wordt bij herhaald kort verzuim een preventief inzetbaarheidsgesprek gevoerd?",
+      "sub": "Frequent verzuim"
+    },
+    {
+      "id": "D10",
+      "phase": "Verdieping",
+      "theme": "Beleid, proces en Poortwachter",
+      "code": "BP01",
+      "text": "Is het verzuimbeleid actueel, praktisch en begrijpelijk voor medewerkers en leidinggevenden?",
+      "sub": "Verzuimbeleid"
+    },
+    {
+      "id": "D11",
+      "phase": "Verdieping",
+      "theme": "Beleid, proces en Poortwachter",
+      "code": "BP02",
+      "text": "Zijn alle Wet verbetering poortwachter-momenten vertaald naar concrete processtappen?",
+      "sub": "Poortwachter"
+    },
+    {
+      "id": "D12",
+      "phase": "Verdieping",
+      "theme": "Beleid, proces en Poortwachter",
+      "code": "BP03",
+      "text": "Worden eerstejaarsevaluatie, plan van aanpak en bijstellingen tijdig bewaakt?",
+      "sub": "Termijnbewaking"
+    },
+    {
+      "id": "D13",
+      "phase": "Verdieping",
+      "theme": "Beleid, proces en Poortwachter",
+      "code": "BP04",
+      "text": "Is duidelijk wanneer tweede spoor, deskundigenoordeel of arbeidsdeskundig onderzoek nodig is?",
+      "sub": "Escalatie"
+    },
+    {
+      "id": "D14",
+      "phase": "Verdieping",
+      "theme": "Beleid, proces en Poortwachter",
+      "code": "BP05",
+      "text": "Worden dossiers periodiek gecontroleerd op kwaliteit, volledigheid en privacy?",
+      "sub": "Dossiercontrole"
+    },
+    {
+      "id": "D15",
+      "phase": "Verdieping",
+      "theme": "Beleid, proces en Poortwachter",
+      "code": "BP06",
+      "text": "Wordt het beleid na casussen of sanctierisico's verbeterd?",
+      "sub": "Leren van casussen"
+    },
+    {
+      "id": "D16",
+      "phase": "Verdieping",
+      "theme": "Preventie en werkbelasting",
+      "code": "PW01",
+      "text": "Is er actueel zicht op psychosociale arbeidsbelasting, werkdruk en ongewenst gedrag?",
+      "sub": "PSA"
+    },
+    {
+      "id": "D17",
+      "phase": "Verdieping",
+      "theme": "Preventie en werkbelasting",
+      "code": "PW02",
+      "text": "Is er actueel zicht op fysieke belasting, ergonomie en belastende werkomstandigheden?",
+      "sub": "Fysieke belasting"
+    },
+    {
+      "id": "D18",
+      "phase": "Verdieping",
+      "theme": "Preventie en werkbelasting",
+      "code": "PW03",
+      "text": "Wordt de RI&E vertaald naar concrete preventieacties rond verzuimrisico's?",
+      "sub": "RI&E koppeling"
+    },
+    {
+      "id": "D19",
+      "phase": "Verdieping",
+      "theme": "Preventie en werkbelasting",
+      "code": "PW04",
+      "text": "Worden teams met hoge werkdruk ondersteund voordat klachten leiden tot uitval?",
+      "sub": "Werkdrukaanpak"
+    },
+    {
+      "id": "D20",
+      "phase": "Verdieping",
+      "theme": "Preventie en werkbelasting",
+      "code": "PW05",
+      "text": "Is er een laagdrempelig aanbod voor preventief spreekuur, coaching of bedrijfsmaatschappelijk werk?",
+      "sub": "Preventief aanbod"
+    },
+    {
+      "id": "D21",
+      "phase": "Verdieping",
+      "theme": "Preventie en werkbelasting",
+      "code": "PW06",
+      "text": "Wordt effect gemeten van preventieve maatregelen?",
+      "sub": "Effectmeting"
+    },
+    {
+      "id": "D22",
+      "phase": "Verdieping",
+      "theme": "Medewerker en cultuur",
+      "code": "MC01",
+      "text": "Durven medewerkers vroegtijdig signalen van overbelasting of verminderde inzetbaarheid te bespreken?",
+      "sub": "Bespreekbaarheid"
+    },
+    {
+      "id": "D23",
+      "phase": "Verdieping",
+      "theme": "Medewerker en cultuur",
+      "code": "MC02",
+      "text": "Wordt gezondheid gezien als gedeelde verantwoordelijkheid van organisatie, leidinggevende en medewerker?",
+      "sub": "Gedeeld eigenaarschap"
+    },
+    {
+      "id": "D24",
+      "phase": "Verdieping",
+      "theme": "Medewerker en cultuur",
+      "code": "MC03",
+      "text": "Is er aandacht voor psychologische veiligheid in teams?",
+      "sub": "Psychologische veiligheid"
+    },
+    {
+      "id": "D25",
+      "phase": "Verdieping",
+      "theme": "Medewerker en cultuur",
+      "code": "MC04",
+      "text": "Wordt terugkeer na verzuim begeleid met duurzame werkafspraken?",
+      "sub": "Duurzame terugkeer"
+    },
+    {
+      "id": "D26",
+      "phase": "Verdieping",
+      "theme": "Medewerker en cultuur",
+      "code": "MC05",
+      "text": "Worden medewerkers actief betrokken bij verbetermaatregelen rond werk en gezondheid?",
+      "sub": "Participatie"
+    },
+    {
+      "id": "D27",
+      "phase": "Verdieping",
+      "theme": "Arbodienst, adviseurs en samenwerking",
+      "code": "AS01",
+      "text": "Zijn afspraken met arbodienst, bedrijfsarts en casemanager duidelijk vastgelegd in SLA of werkafspraken?",
+      "sub": "Afspraken"
+    },
+    {
+      "id": "D28",
+      "phase": "Verdieping",
+      "theme": "Arbodienst, adviseurs en samenwerking",
+      "code": "AS02",
+      "text": "Is de bedrijfsarts tijdig beschikbaar en wordt de inzet passend gepland?",
+      "sub": "Beschikbaarheid arts"
+    },
+    {
+      "id": "D29",
+      "phase": "Verdieping",
+      "theme": "Arbodienst, adviseurs en samenwerking",
+      "code": "AS03",
+      "text": "Worden adviezen van bedrijfsarts of arbeidsdeskundige vertaald naar uitvoerbare werkafspraken?",
+      "sub": "Vertaling advies"
+    },
+    {
+      "id": "D30",
+      "phase": "Verdieping",
+      "theme": "Arbodienst, adviseurs en samenwerking",
+      "code": "AS04",
+      "text": "Is er structureel overleg tussen werkgever, arbodienst en eventuele verzekeraar over trends en verbeterpunten?",
+      "sub": "Ketenoverleg"
+    },
+    {
+      "id": "D31",
+      "phase": "Verdieping",
+      "theme": "Arbodienst, adviseurs en samenwerking",
+      "code": "AS05",
+      "text": "Wordt de kwaliteit van arbodienstverlening periodiek geëvalueerd?",
+      "sub": "Evaluatie"
+    },
+    {
+      "id": "D32",
+      "phase": "Verdieping",
+      "theme": "Kosten, verzekering en risico",
+      "code": "KR01",
+      "text": "Is bekend wat één procentpunt verzuim de organisatie ongeveer kost?",
+      "sub": "Kostenimpact"
+    },
+    {
+      "id": "D33",
+      "phase": "Verdieping",
+      "theme": "Kosten, verzekering en risico",
+      "code": "KR02",
+      "text": "Worden verzekering, verzuimbegeleiding en preventie als één samenhangend risicodomein bekeken?",
+      "sub": "Integrale risicokijk"
+    },
+    {
+      "id": "D34",
+      "phase": "Verdieping",
+      "theme": "Kosten, verzekering en risico",
+      "code": "KR03",
+      "text": "Worden subsidies, interventiebudgetten of verzekeraarsdiensten actief benut?",
+      "sub": "Financiering"
+    },
+    {
+      "id": "D35",
+      "phase": "Verdieping",
+      "theme": "Kosten, verzekering en risico",
+      "code": "KR04",
+      "text": "Is duidelijk waar het grootste financiële en organisatorische verzuimrisico zit?",
+      "sub": "Risicoprioriteit"
+    },
+    {
+      "id": "D36",
+      "phase": "Verdieping",
+      "theme": "Vitaliteit en duurzame inzetbaarheid",
+      "code": "VI01",
+      "text": "Is er een concreet plan voor duurzame inzetbaarheid voor verschillende levensfasen of functiegroepen?",
+      "sub": "DI-plan"
+    },
+    {
+      "id": "D37",
+      "phase": "Verdieping",
+      "theme": "Vitaliteit en duurzame inzetbaarheid",
+      "code": "VI02",
+      "text": "Sluiten vitaliteitsactiviteiten aan op de echte verzuim- en werkdrukrisico's?",
+      "sub": "Relevantie aanbod"
+    },
+    {
+      "id": "D38",
+      "phase": "Verdieping",
+      "theme": "Vitaliteit en duurzame inzetbaarheid",
+      "code": "VI03",
+      "text": "Worden medewerkers gestimuleerd om eigen regie te nemen op gezondheid en ontwikkeling?",
+      "sub": "Eigen regie"
+    },
+    {
+      "id": "D39",
+      "phase": "Verdieping",
+      "theme": "Vitaliteit en duurzame inzetbaarheid",
+      "code": "VI04",
+      "text": "Wordt inzetbaarheid gekoppeld aan loopbaan, scholing en werkvermogen?",
+      "sub": "Werkvermogen"
+    },
+    {
+      "id": "D40",
+      "phase": "Verdieping",
+      "theme": "Governance en verbetering",
+      "code": "GV01",
+      "text": "Is er een eigenaar op directieniveau voor verzuim, preventie en duurzame inzetbaarheid?",
+      "sub": "Eigenaarschap"
+    },
+    {
+      "id": "D41",
+      "phase": "Verdieping",
+      "theme": "Governance en verbetering",
+      "code": "GV02",
+      "text": "Worden verbeteracties bewaakt met eigenaar, deadline en effectindicator?",
+      "sub": "Actieopvolging"
+    },
+    {
+      "id": "D42",
+      "phase": "Verdieping",
+      "theme": "Governance en verbetering",
+      "code": "GV03",
+      "text": "Worden successen en leerpunten zichtbaar teruggekoppeld aan de organisatie?",
+      "sub": "Terugkoppeling"
+    },
+    {
+      "id": "D43",
+      "phase": "Verdieping",
+      "theme": "Governance en verbetering",
+      "code": "GV04",
+      "text": "Wordt de scan periodiek herhaald om voortgang te meten?",
+      "sub": "Herhaalmeting"
+    },
+    {
+      "id": "D44",
+      "phase": "Verdieping",
+      "theme": "Governance en verbetering",
+      "code": "GV05",
+      "text": "Past de aanpak bij omvang, sector, risico's en volwassenheid van de organisatie?",
+      "sub": "Maatwerk"
+    },
+    {
+      "id": "D45",
+      "phase": "Verdieping",
+      "theme": "Governance en verbetering",
+      "code": "GV06",
+      "text": "Is er budget en capaciteit beschikbaar om verbeteringen werkelijk uit te voeren?",
+      "sub": "Uitvoerbaarheid"
+    }
+  ],
+  "themes": [
+    "Verzuimbeeld en data",
+    "Leidinggevende regie",
+    "Beleid, proces en Poortwachter",
+    "Preventie en werkbelasting",
+    "Medewerker en cultuur",
+    "Arbodienst, adviseurs en samenwerking",
+    "Kosten, verzekering en risico",
+    "Vitaliteit en duurzame inzetbaarheid",
+    "Governance en verbetering"
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "screens": [
+    {
+      "id": "S01 Intro",
+      "fase": "Quickscan",
+      "titel": "Hoe gezond is uw bedrijf?",
+      "tekst": "Beantwoord 16 korte vragen over verzuimbeeld en leidinggevende regie. U ontvangt direct een compacte stoplichtrapportage met praktische vervolgstappen.",
+      "cta": "CTA: Start quickscan"
+    },
+    {
+      "id": "S02 Vraag",
+      "fase": "Quickscan",
+      "titel": "Vraag {{current}} van 16",
+      "tekst": "Gebruik korte, concrete stellingen. Toon één vraag per scherm of twee compacte themablokken.",
+      "cta": "CTA: Volgende"
+    },
+    {
+      "id": "S03 Resultaat profiel",
+      "fase": "Tussenrapport",
+      "titel": "Waarschijnlijk is uw organisatie de {{profielnaam}}",
+      "tekst": "Korte profieltekst op basis van combinatie van score Verzuimbeeld en data + Leidinggevende regie. Gebruik een illustratievlak bovenaan, zoals in het voorbeeldrapport.",
+      "cta": "CTA: Bekijk je resultaten"
+    },
+    {
+      "id": "S04 Dataduik",
+      "fase": "Tussenrapport",
+      "titel": "Duik in je bedrijfsgezondheid",
+      "tekst": "Toon twee balken met percentages en stoplichtkleur: Verzuimbeeld en data, Leidinggevende regie. Geef direct aan waar de meeste aandacht nodig is.",
+      "cta": "CTA: Lees meer"
+    },
+    {
+      "id": "S05 Thema detail",
+      "fase": "Tussenrapport",
+      "titel": "{{Thema}} {{score}}%",
+      "tekst": "Leg per thema uit wat het meet, wat een hoge score betekent en wat een lage score betekent.",
+      "cta": "CTA: Tips"
+    },
+    {
+      "id": "S06 Tips",
+      "fase": "Tussenrapport",
+      "titel": "Tijd om aan de slag te gaan",
+      "tekst": "Toon 3 of 4 tips die passen bij de laagst scorende rubriek. Gebruik genummerde tipkaarten.",
+      "cta": "CTA: Download PDF / Doe verdieping"
+    },
+    {
+      "id": "S07 Verdieping start",
+      "fase": "Verdieping",
+      "titel": "Maak de diagnose compleet",
+      "tekst": "Leg uit dat de verdieping de rest van de roos voedt: beleid, preventie, cultuur, arbodienst, kosten, vitaliteit en governance.",
+      "cta": "CTA: Start verdieping"
+    },
+    {
+      "id": "S08 Eindrapport",
+      "fase": "Eindrapport",
+      "titel": "Uw bedrijfsgezondheid in één roos",
+      "tekst": "Toon radar/roos met alle rubrieken, topprioriteiten, adviesroute en concrete acties.",
+      "cta": "CTA: Plan adviesgesprek"
+    }
+  ],
+  "report_texts": {
+    "overall rood": {
+      "tekst": "Uw organisatie heeft nog onvoldoende grip op bedrijfsgezondheid. De quickscan laat zien dat data, regie of allebei onvoldoende basis bieden voor voorspelbare verzuimsturing. Begin klein: maak het verzuimbeeld zichtbaar, kies twee prioriteiten en organiseer regie bij leidinggevenden.",
+      "cta": "Plan een adviesgesprek en start met een nulmeting."
+    },
+    "overall oranje": {
+      "tekst": "Er is een basis aanwezig, maar de aanpak is nog kwetsbaar of persoonsafhankelijk. Het grootste rendement zit in het verbinden van inzicht, leidinggevende regie en duidelijke procesafspraken.",
+      "cta": "Kies voor verdieping en vertaal de uitkomst naar een 90-dagen verbeterplan."
+    },
+    "overall groen": {
+      "tekst": "Uw organisatie heeft een goede basis voor grip op verzuim en inzetbaarheid. De volgende stap is verfijning: leren van patronen, preventie scherper richten en effecten meten.",
+      "cta": "Gebruik verdieping voor prioritering en benchmark met normscore."
+    },
+    "verzuimbeeld en data rood": {
+      "tekst": "De organisatie stuurt waarschijnlijk nog te weinig op betrouwbare en gedeelde data. Daardoor blijft verzuim snel casuïstiek in plaats van managementinformatie.",
+      "cta": "Maak eerst dashboard, definities en bespreekritme op orde."
+    },
+    "verzuimbeeld en data oranje": {
+      "tekst": "Er is data beschikbaar, maar deze leidt nog niet altijd tot gerichte actie. De stap van meten naar sturen verdient aandacht.",
+      "cta": "Koppel trends aan acties per team of risicogroep."
+    },
+    "verzuimbeeld en data groen": {
+      "tekst": "Data is bruikbaar als stuurinformatie. Houd de cyclus vast en verrijk deze met oorzaken, kosten en preventiesignalen.",
+      "cta": "Maak effectmeting onderdeel van de kwartaalcyclus."
+    },
+    "leidinggevende regie rood": {
+      "tekst": "Leidinggevenden missen waarschijnlijk houvast, tijd of ondersteuning om verzuim vanaf dag één goed te begeleiden.",
+      "cta": "Start met rolhelderheid, gesprekskader en ondersteuning."
+    },
+    "leidinggevende regie oranje": {
+      "tekst": "Leidinggevenden pakken hun rol deels, maar de aanpak is nog niet overal consequent.",
+      "cta": "Train op gespreksvoering, frequent verzuim en aangepast werk."
+    },
+    "leidinggevende regie groen": {
+      "tekst": "Leidinggevenden hebben een stevige basis voor regie. Borg dit met feedback, dossierkwaliteit en preventieve teaminterventies.",
+      "cta": "Gebruik verdieping voor finetuning en best practices."
+    }
+  },
+  "profiles": {
+    "Alarmfase verzuimregie": "De basis voor grip op verzuim is onvoldoende voorspelbaar. De organisatie heeft waarschijnlijk snel voordeel van zicht op data, rolhelderheid en externe begeleiding.",
+    "Datagedreven maar regie-arm": "U ziet goed wat er gebeurt, maar de vertaling naar dagelijks leidinggeven blijft achter. De grootste winst zit in gesprekken, rolverdeling en herstelafspraken.",
+    "Praktische regelaar": "Er gebeurt veel in de praktijk, maar het ontbreekt aan gedeeld inzicht. Maak zichtbaar waar verzuim ontstaat en welke acties effect hebben.",
+    "Praktische verbeteraar": "Er is een werkbare basis, maar nog geen strak systeem. Kies prioriteiten en breng data, regie en proces in één ritme.",
+    "Gezondheidsregisseur": "Uw organisatie heeft een sterke basis. De verdieping helpt om preventie, kosten en duurzame inzetbaarheid scherper te richten."
+  },
+  "tips": {
+    "Verzuimbeeld en data": [
+      {
+        "kop": "Maak het zichtbaar",
+        "tekst": "Maak één dashboard met verzuimpercentage, frequentie, duur en kosten."
+      },
+      {
+        "kop": "Verbind inzicht aan actie",
+        "tekst": "Bespreek elk kwartaal patronen per team en kies één preventieve actie."
+      },
+      {
+        "kop": "Versterk regie",
+        "tekst": "Vertaal data naar concrete hypotheses: waar is verzuim beïnvloedbaar?"
+      },
+      {
+        "kop": "Borg opvolging",
+        "tekst": "Maak een norm en ambitie expliciet, zodat sturen mogelijk wordt."
+      }
+    ],
+    "Leidinggevende regie": [
+      {
+        "kop": "Maak het zichtbaar",
+        "tekst": "Maak een dag-1 belscript en gesprekskader voor leidinggevenden."
+      },
+      {
+        "kop": "Verbind inzicht aan actie",
+        "tekst": "Train leidinggevenden op mogelijkheden, privacy en aangepast werk."
+      },
+      {
+        "kop": "Versterk regie",
+        "tekst": "Leg rolverdeling vast tussen leidinggevende, HR en arbodienst."
+      },
+      {
+        "kop": "Borg opvolging",
+        "tekst": "Bespreek frequent verzuim preventief voordat het langdurig wordt."
+      }
+    ]
+  },
+  "theme_detail": {
+    "Verzuimbeeld en data": "Dit onderdeel laat zien of verzuim niet alleen wordt geregistreerd, maar ook wordt begrepen en gebruikt om te sturen. Een hoge score betekent dat trends, oorzaken en kosten zichtbaar zijn en tot acties leiden. Een lage score betekent dat verzuim waarschijnlijk vooral reactief en casusgericht wordt behandeld.",
+    "Leidinggevende regie": "Dit onderdeel laat zien of leidinggevenden vanaf dag één actief, zorgvuldig en privacybewust regie nemen op verzuim en terugkeer. Een hoge score betekent dat rollen, gesprekken en ondersteuning duidelijk zijn. Een lage score wijst op risico op vertraging, onzekerheid en wisselende aanpak per team."
+  }
+}

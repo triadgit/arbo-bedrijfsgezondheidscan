@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bedrijfsgezondheidscan — Arbo Concern</title>
+  <meta name="description" content="Hoe gezond is uw bedrijf? Doe de gratis bedrijfsgezondheidscan en krijg direct zicht op verzuimbeeld en leidinggevende regie." />
+  <meta name="robots" content="index,follow" />
+  <link rel="icon" href="assets/img/favicon.svg" />
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="assets/css/scan.css" />
+</head>
+<body>
+  <!-- atmosfeer: zachte gradient-mesh + grain, puur decoratief -->
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="bg-grain" aria-hidden="true"></div>
+
+  <div class="app">
+    <!-- kale merkbalk: alleen logo, geen navigatie (landingspagina) -->
+    <header class="brandbar">
+      <a class="brandbar__logo" href="https://www.arboconcern.nl" aria-label="Arbo Concern">
+        <img src="assets/img/arboconcern-logo.svg" alt="Arbo Concern" width="199" height="43" />
+      </a>
+      <span class="brandbar__tag">Bedrijfsgezondheidscan</span>
+    </header>
+
+    <main class="stage" id="stage">
+
+      <!-- 1. INTRO -->
+      <section class="screen is-active" id="screen-intro" data-screen="intro">
+        <div class="intro">
+          <p class="eyebrow"><span class="dot-pulse"></span> Gratis quickscan &middot; 16 vragen &middot; direct resultaat</p>
+          <h1 class="display">Hoe gezond is<br /><span class="accenttext">uw bedrijf?</span></h1>
+          <p class="lead" id="introLead"></p>
+          <div class="intro__cta">
+            <button class="btn btn--primary btn--lg" id="startQuick">Start de quickscan <span class="btn__arrow">&rarr;</span></button>
+          </div>
+          <ul class="intro__assure" id="introAssure"></ul>
+        </div>
+        <div class="intro__art" aria-hidden="true">
+          <div class="gauge">
+            <div class="gauge__ring"></div>
+            <div class="gauge__core"><span class="gauge__emoji">📈</span></div>
+            <span class="gauge__chip gauge__chip--1">Verzuimbeeld</span>
+            <span class="gauge__chip gauge__chip--2">Regie</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 & 8. VRAAG (hergebruikt voor quickscan en verdieping) -->
+      <section class="screen" id="screen-question" data-screen="question">
+        <div class="qhead">
+          <div class="qhead__meta">
+            <span class="pill" id="qPhasePill">Quickscan</span>
+            <span class="qhead__count" id="qCount"></span>
+          </div>
+          <div class="progress"><div class="progress__bar" id="qProgress"></div></div>
+        </div>
+        <div class="qcard card">
+          <p class="qtheme" id="qTheme"></p>
+          <h2 class="qtext" id="qText"></h2>
+          <div class="answers" id="qAnswers" role="radiogroup" aria-label="Antwoordopties"></div>
+          <p class="qprivacy">Beantwoord op organisatieniveau. Vraag geen medische persoonsgegevens uit.</p>
+        </div>
+        <div class="qnav">
+          <button class="btn btn--ghost" id="qPrev"><span class="btn__arrow">&larr;</span> Vorige</button>
+          <button class="btn btn--primary" id="qNext">Volgende <span class="btn__arrow">&rarr;</span></button>
+        </div>
+      </section>
+
+      <!-- 3. LEAD-POORT -->
+      <section class="screen" id="screen-gate" data-screen="gate">
+        <div class="gate">
+          <div class="gate__intro">
+            <span class="pill pill--accent">Bijna klaar</span>
+            <h2 class="display display--sm">Uw resultaat staat klaar</h2>
+            <p class="lead">Laat hieronder kort uw gegevens achter. U ziet direct uw bedrijfsprofiel en stoplichtscore, en we sturen het complete rapport naar uw inbox.</p>
+            <ul class="gate__bullets" id="gateBullets"></ul>
+          </div>
+          <form class="gate__form card" id="gateForm" novalidate>
+            <div class="formgrid" id="gateFields"></div>
+            <p class="gate__avg" id="gateAvg"></p>
+            <button class="btn btn--primary btn--lg btn--block" type="submit" id="gateSubmit">Bekijk mijn resultaat <span class="btn__arrow">&rarr;</span></button>
+            <p class="gate__fineprint">U ontvangt eenmalig uw rapport. Geen spam, geen medische gegevens.</p>
+          </form>
+        </div>
+      </section>
+
+      <!-- 4. PROFIEL -->
+      <section class="screen" id="screen-profile" data-screen="profile">
+        <div class="profile">
+          <div class="profile__icon" id="profileIcon">🎯</div>
+          <p class="profile__kicker">Waarschijnlijk is uw organisatie de</p>
+          <h1 class="display display--sm accenttext" id="profileName"></h1>
+          <p class="lead" id="profileText"></p>
+          <button class="btn btn--primary btn--lg" id="profileNext">Duik in uw data <span class="btn__arrow">&rarr;</span></button>
+        </div>
+      </section>
+
+      <!-- 5. DATADUIK -->
+      <section class="screen" id="screen-data" data-screen="data">
+        <h2 class="display display--sm">Duik in uw bedrijfsgezondheid</h2>
+        <p class="lead">Twee bepalende knoppen voor grip op verzuim. Klik op een onderdeel voor verdieping.</p>
+        <div class="bars" id="dataBars"></div>
+        <div class="data__summary card" id="dataSummary"></div>
+        <div class="qnav qnav--center">
+          <button class="btn btn--ghost" id="dataBack"><span class="btn__arrow">&larr;</span> Profiel</button>
+          <button class="btn btn--primary" id="dataTips">Bekijk tips <span class="btn__arrow">&rarr;</span></button>
+        </div>
+      </section>
+
+      <!-- 6. THEMA-DETAIL -->
+      <section class="screen" id="screen-detail" data-screen="detail">
+        <div class="card detail">
+          <div class="detail__head">
+            <h2 class="display display--sm" id="detailTitle"></h2>
+            <span class="badge" id="detailBadge"></span>
+          </div>
+          <div class="bar bar--lg"><div class="bar__fill" id="detailBar"></div></div>
+          <p class="lead detail__body" id="detailBody"></p>
+        </div>
+        <div class="qnav qnav--center">
+          <button class="btn btn--ghost" id="detailBack"><span class="btn__arrow">&larr;</span> Terug</button>
+          <button class="btn btn--primary" id="detailTips">Tips <span class="btn__arrow">&rarr;</span></button>
+        </div>
+      </section>
+
+      <!-- 7. TIPS -->
+      <section class="screen" id="screen-tips" data-screen="tips">
+        <h2 class="display display--sm">Tijd om aan de slag te gaan</h2>
+        <p class="lead" id="tipsLead"></p>
+        <div class="tips" id="tipsGrid"></div>
+        <div class="ctabox" id="tipsCta">
+          <div class="ctabox__text">
+            <h3>Wilt u het volledige beeld?</h3>
+            <p id="tipsCtaText">Maak de diagnose compleet met de verdieping en ontvang de volledige roos met al uw aandachtsgebieden.</p>
+          </div>
+          <div class="ctabox__actions">
+            <button class="btn btn--primary btn--lg" id="startDeep">Start de verdieping <span class="btn__arrow">&rarr;</span></button>
+            <a class="btn btn--ghost" id="tipsAdvies" href="#" target="_blank" rel="noopener">Plan een adviesgesprek</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. EINDRAPPORT / ROOS -->
+      <section class="screen" id="screen-report" data-screen="report">
+        <h2 class="display display--sm">Uw bedrijfsgezondheid in één roos</h2>
+        <p class="lead">De roos toont uw score per rubriek tegenover de norm van 80%. De grootste afstand tot de norm bepaalt uw topprioriteiten.</p>
+        <div class="report">
+          <div class="report__radar card">
+            <canvas id="radar" width="640" height="560" role="img" aria-label="Roosdiagram met scores per rubriek"></canvas>
+          </div>
+          <div class="report__side">
+            <div class="card prio">
+              <h3>Uw topprioriteiten</h3>
+              <ol id="prioList" class="prio__list"></ol>
+            </div>
+            <div class="ctabox ctabox--solid">
+              <h3 id="reportRouteTitle"></h3>
+              <p id="reportRouteText"></p>
+              <a class="btn btn--primary btn--lg btn--block" id="reportAdvies" href="#" target="_blank" rel="noopener">Plan een adviesgesprek <span class="btn__arrow">&rarr;</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <p class="legal" id="legal">Geen medische persoonsgegevens. Alleen organisatieniveau. &middot; Een initiatief van Arbo Concern.</p>
+  </div>
+
+  <!-- live region voor schermwissels (toegankelijkheid) -->
+  <div class="visually-hidden" aria-live="polite" id="srStatus"></div>
+
+  <script type="module" src="assets/js/scan.js"></script>
+</body>
+</html>
