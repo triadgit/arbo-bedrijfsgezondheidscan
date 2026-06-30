@@ -129,12 +129,21 @@ function renderAnswers(qid) {
     btn.setAttribute('role', 'radio');
     btn.setAttribute('aria-checked', sel ? 'true' : 'false');
     btn.style.setProperty('--i', idx);
+    btn.dataset.label = a.label;
     btn.innerHTML = `<span class="answer__dot"></span><span class="answer__label">${a.label}</span>`;
-    btn.addEventListener('click', () => {
-      app.answers[qid] = { label: a.label, score: a.score };
-      renderAnswers(qid);
-    });
+    // Alleen de selectie omzetten (geen heropbouw): voorkomt dat de
+    // intro-animatie opnieuw afspeelt en het scherm lijkt te "verspringen".
+    btn.addEventListener('click', () => selectAnswer(qid, a));
     wrap.appendChild(btn);
+  });
+}
+
+function selectAnswer(qid, a) {
+  app.answers[qid] = { label: a.label, score: a.score };
+  document.querySelectorAll('#qAnswers .answer').forEach((btn) => {
+    const on = btn.dataset.label === a.label;
+    btn.classList.toggle('is-selected', on);
+    btn.setAttribute('aria-checked', on ? 'true' : 'false');
   });
 }
 
