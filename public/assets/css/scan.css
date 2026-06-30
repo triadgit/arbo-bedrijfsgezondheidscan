@@ -262,18 +262,18 @@ h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink)
 @keyframes shake { 25% { transform: translateX(-6px); } 50% { transform: translateX(6px); } 75% { transform: translateX(-4px); } }
 
 /* ===================== 3. LEAD-POORT ===================== */
-.gate { display: grid; grid-template-columns: .92fr 1.08fr; gap: clamp(28px, 4vw, 56px); align-items: center; max-width: var(--content); margin-inline: auto; }
-.gate__intro .pill--accent { display: inline-block; margin-bottom: 20px; }
+.gate { display: grid; grid-template-columns: .92fr 1.08fr; gap: clamp(28px, 4vw, 56px); align-items: start; max-width: var(--content); margin-inline: auto; }
+.gate__intro { padding-top: 6px; }
+.gate__intro .pill--accent { display: inline-block; margin-bottom: 18px; }
 .gate__intro .display { margin-bottom: 14px; }
-.gate__intro .lead { max-width: 34ch; }
-.gate__bullets { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 11px; }
+.gate__intro .lead { max-width: 36ch; }
+.gate__bullets { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 14px; }
 .gate__bullets li {
-  position: relative; padding: 12px 16px 12px 46px; font-weight: 600; font-size: 14.5px; color: var(--c-ink);
-  background: rgba(255, 255, 255, .6); border: 1px solid var(--line); border-radius: 13px;
+  position: relative; padding-left: 30px; font-weight: 600; font-size: 15px; color: var(--ink-soft);
 }
 .gate__bullets li::before {
-  content: ""; position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; border-radius: 7px;
-  background: linear-gradient(140deg, var(--c-accent), #5fb6af) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='white' d='M6.5 11L3.5 8l1-1 2 2 4.5-4.5 1 1z'/%3E%3C/svg%3E") center/14px no-repeat;
+  content: ""; position: absolute; left: 0; top: 1px; width: 19px; height: 19px; border-radius: 50%;
+  background: var(--c-accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='white' d='M6.5 11L3.5 8l1-1 2 2 4.5-4.5 1 1z'/%3E%3C/svg%3E") center/13px no-repeat;
 }
 /* formulierkaart: drijvend, met gekleurde accentrand bovenaan */
 .gate__form { position: relative; overflow: hidden; padding: clamp(24px, 3vw, 36px); border-radius: 24px; box-shadow: var(--shadow); }
@@ -317,21 +317,17 @@ h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink)
 /* ===================== 4. PROFIEL (resultaat-hero) ===================== */
 .result { max-width: 600px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; }
 .result__badge {
-  position: relative; width: 124px; height: 124px; border-radius: 36px;
-  display: grid; place-items: center; margin-bottom: 22px;
-  background: linear-gradient(150deg, #fff, var(--c-soft));
+  position: relative; width: 96px; height: 96px; border-radius: 28px;
+  display: grid; place-items: center; margin-bottom: 20px;
   animation: pop .6s var(--ease) both;
 }
-.result__badge::before { content: ""; position: absolute; inset: -5px; border-radius: 40px; z-index: -1; filter: blur(4px); }
-.result__badge.is-groen { box-shadow: 0 28px 62px -26px rgba(75, 179, 166, .7); }
-.result__badge.is-oranje { box-shadow: 0 28px 62px -26px rgba(236, 100, 26, .65); }
-.result__badge.is-rood { box-shadow: 0 28px 62px -26px rgba(107, 111, 126, .6); }
-.result__badge.is-groen::before { background: linear-gradient(150deg, #9bd8d0, var(--st-groen)); opacity: .6; }
-.result__badge.is-oranje::before { background: linear-gradient(150deg, #f7a06a, var(--st-oranje)); opacity: .55; }
-.result__badge.is-rood::before { background: linear-gradient(150deg, #aeb2bd, var(--st-rood)); opacity: .5; }
-.result__icon { font-size: 58px; line-height: 1; }
-.result__kicker { font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--c-muted); margin: 0 0 6px; }
-.result__text { margin: 0 auto 30px; }
+.result__badge.is-groen { background: linear-gradient(150deg, #e7f7f3, #cdeee7); box-shadow: 0 20px 46px -22px rgba(75, 179, 166, .6); }
+.result__badge.is-oranje { background: linear-gradient(150deg, #fdeee3, #fbdcc6); box-shadow: 0 20px 46px -22px rgba(236, 100, 26, .5); }
+.result__badge.is-rood { background: linear-gradient(150deg, #eef0f3, #dfe2e8); box-shadow: 0 20px 46px -22px rgba(107, 111, 126, .45); }
+.result__icon { font-size: 46px; line-height: 1; }
+.result__kicker { font-weight: 700; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--c-muted); margin: 0 0 6px; }
+#profileName { font-size: clamp(26px, 3.2vw, 36px); line-height: 1.08; margin-bottom: 12px; }
+.result__text { margin: 0 auto 26px; font-size: 16.5px; }
 .result__scores { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; max-width: 540px; margin: 0 auto 30px; }
 .scorechip { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow-sm); text-align: left; animation: ans-in .5s var(--ease) both; }
 .scorechip:nth-child(2) { animation-delay: .08s; }
