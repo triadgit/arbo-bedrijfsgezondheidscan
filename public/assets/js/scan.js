@@ -90,10 +90,14 @@ function renderStatic() {
 }
 
 /* ---------- generieke schermwissel ---------- */
+// Schermen met content op volle breedte; daar lijnt de header ook breed uit.
+const WIDE_SCREENS = ['screen-intro', 'screen-data', 'screen-tips', 'screen-report'];
+
 function show(screenId) {
   document.querySelectorAll('.screen').forEach((s) => s.classList.remove('is-active'));
   const el = document.getElementById(screenId);
   el.classList.add('is-active');
+  document.querySelector('.brandbar').classList.toggle('brandbar--wide', WIDE_SCREENS.includes(screenId));
   window.scrollTo({ top: 0, behavior: 'smooth' });
   const heading = el.querySelector('h1, h2');
   if (heading) document.getElementById('srStatus').textContent = heading.textContent;

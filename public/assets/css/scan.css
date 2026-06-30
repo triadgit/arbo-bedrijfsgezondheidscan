@@ -76,7 +76,11 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   padding: 22px 0 10px;
   max-width: var(--content); margin-inline: auto; width: 100%;
+  transition: max-width .4s var(--ease);
 }
+/* Brede schermen (intro, dataduik, tips, roos) gebruiken de volle breedte,
+   zodat logo links en badge rechts uitlijnen met de content eronder. */
+.brandbar--wide { max-width: var(--maxw); }
 .brandbar__logo { display: inline-flex; }
 .brandbar__logo img { height: 38px; width: auto; display: block; }
 .brandbar__tag {
