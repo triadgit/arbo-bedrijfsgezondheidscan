@@ -98,15 +98,19 @@ body {
 }
 
 /* ---------- typografie ---------- */
+/* text-wrap: balance verdeelt koppen evenwichtig over de regels
+   (geen volle regel met één los woord eronder). */
 .display {
   font-family: var(--font-display); font-weight: 700;
   font-size: clamp(38px, 7vw, 72px); line-height: 1.04;
   letter-spacing: -.02em; color: var(--c-ink); margin: 0 0 18px;
+  text-wrap: balance;
 }
 .display--sm { font-size: clamp(28px, 4.4vw, 44px); margin-bottom: 12px; }
 .accenttext { color: var(--c-primary); }
-h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink); }
-.lead { font-size: clamp(16px, 1.8vw, 19px); color: var(--ink-soft); max-width: 60ch; }
+h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink); text-wrap: balance; }
+/* text-wrap: pretty voorkomt weeswoorden onderaan lopende tekst. */
+.lead { font-size: clamp(16px, 1.8vw, 19px); color: var(--ink-soft); max-width: 60ch; text-wrap: pretty; }
 .eyebrow {
   display: inline-flex; align-items: center; gap: 9px;
   font-weight: 700; font-size: 13.5px; letter-spacing: .02em;
@@ -218,7 +222,7 @@ h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink)
   font-family: var(--font-display); font-weight: 600; color: var(--c-accent);
   color: #2f7a73; font-size: 14px; margin: 0 0 8px;
 }
-.qtext { font-size: clamp(20px, 3vw, 28px); line-height: 1.25; margin: 0 0 24px; }
+.qtext { font-size: clamp(20px, 3vw, 28px); line-height: 1.25; margin: 0 0 24px; text-wrap: balance; }
 .answers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .answer {
   --i: 0;
@@ -350,7 +354,7 @@ h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink)
   background: linear-gradient(135deg, var(--c-primary), var(--c-primary-deep)); margin-bottom: 14px;
 }
 .tip h3 { margin: 0 0 7px; font-size: 18px; }
-.tip p { margin: 0; color: var(--ink-soft); }
+.tip p { margin: 0; color: var(--ink-soft); text-wrap: pretty; }
 
 .ctabox {
   display: flex; align-items: center; justify-content: space-between; gap: 26px; flex-wrap: wrap;
@@ -358,7 +362,7 @@ h2, h3 { font-family: var(--font-display); font-weight: 600; color: var(--c-ink)
   border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(24px, 3.5vw, 36px);
 }
 .ctabox h3 { margin: 0 0 6px; font-size: 22px; }
-.ctabox p { margin: 0; color: var(--ink-soft); max-width: 52ch; }
+.ctabox p { margin: 0; color: var(--ink-soft); max-width: 52ch; text-wrap: pretty; }
 .ctabox__actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .ctabox--solid {
   flex-direction: column; align-items: stretch; text-align: left;
